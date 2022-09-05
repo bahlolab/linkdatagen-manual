@@ -1,6 +1,7 @@
 ---
 nocite: |
-  @@bahlo2009linkagemapping, @bahlo2009linkagemapping
+  @bahlo2009linkagemapping
+  @smith2011reducing
 ---
 # Preface {.unnumbered}
 
@@ -8,6 +9,13 @@ nocite: |
 ## Work in progress
 
 This manual is a work in progress. Until it is complete, please continue using LINKDATAGEN from <https://bioinf.wehi.edu.au/software/linkdatagen/>.
+:::
+
+::: callout-note {.content-visible when-format="html"}
+## This manual is also avaialble as a PDF or Word document. 
+[linkdatagen-manual.pdf](linkdatagen-manual.pdf)
+
+[linkdatagen-manual.docx](linkdatagen-manual.docx)
 :::
 
 LINKDATAGEN is a PERL (5.8+) script that generates datasets for linkage analysis, relatedness checking, IBD and HBD inference and association analyses using genotypes generated from any of Affymetrix SNP chips, Illumina SNP chips or massively parallel sequencing (MPS; otherwise known as next generation sequencing or NGS) data.
