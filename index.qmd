@@ -12,7 +12,7 @@ This manual is a work in progress. Until it is complete, please continue using L
 
 LINKDATAGEN is a PERL (5.8+) script that generates datasets for linkage analysis, relatedness checking, IBD and HBD inference and association analyses using genotypes generated from any of Affymetrix SNP chips, Illumina SNP chips or massively parallel sequencing (MPS; otherwise known as next generation sequencing or NGS) data.
 
-Linkdatagen selects markers for linkage and association analyses and performs nuclear family Mendelian error detection. It also performs sex checks using both X and Y chromosome markers (if available). Linkdatagen supports all eleven HapMap populations (ASW, CEU, CHB, CHD, GIH, JPT, LWK, MEX, MKK, TSI and YRI) for the following platforms, unless otherwise specified:
+LINKDATAGEN selects markers for linkage and association analyses and performs nuclear family Mendelian error detection. It also performs sex checks using both X and Y chromosome markers (if available). Linkdatagen supports all eleven HapMap populations (ASW, CEU, CHB, CHD, GIH, JPT, LWK, MEX, MKK, TSI and YRI) for the following platforms, unless otherwise specified:
 
 -   Affymetrix: 50K Xba, 50K Hind, 250K Sty, 250K Nsp, 5.0, 6.0 and 500K Sty+Nsp
 -   Illumina: 610Quad, Cyto12, Omni Express, 1M, plus others due to high overlap between Illumina platforms

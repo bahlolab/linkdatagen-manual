@@ -16,5 +16,6 @@ contributed to the development of this software by suggesting improvements,
 writing code and documentations and most of all using it. Special thanks go to:
 Catherine Bromhead, Katherine Smith, Tom Scerri, Vesna Lukic and Rick Tankard.
 
-For bug reports or other problems
-please email [bahlo\@wehi.edu.au](mailto:bahlo@wehi.edu.au).
+For questions on LINKDATAGEN, please visit the [Github discussions page](https://github.com/bahlolab/linkdatagen/discussions).
+For bug reports, please [submit an issue on Github](https://github.com/bahlolab/linkdatagen/issues). 
+Alternatively, you may email <bahlo@wehi.edu.au>.

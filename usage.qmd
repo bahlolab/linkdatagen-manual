@@ -80,8 +80,7 @@ is run from.
 
 As an example of a pedfile, consider the pedigree:
 
-![temp haploped](file:////Users/tankard.r/Library/Group%2520Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image001.png){alt="temp haploped"} 
-
+TODO: insert pedigree
  
 
  
