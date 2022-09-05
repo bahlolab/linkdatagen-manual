@@ -1,9 +1,24 @@
 # Preface {.unnumbered}
 
-This is a Quarto book.
+LINKDATAGEN is a PERL (5.8+) script that generates datasets for linkage analysis, relatedness checking, IBD and HBD inference and association analyses using genotypes generated from any of Affymetrix SNP chips, Illumina SNP chips or massively parallel sequencing (MPS; otherwise known as next generation sequencing or NGS) data.
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+Linkdatagen selects markers for linkage and association analyses and performs nuclear family Mendelian error detection. It also performs sex checks using both X and Y chromosome markers (if available). Linkdatagen supports all eleven HapMap populations (ASW, CEU, CHB, CHD, GIH, JPT, LWK, MEX, MKK, TSI and YRI) for the following platforms, unless otherwise specified:
 
-```{r}
-1 + 1
-```
+-   Affymetrix: 50K Xba, 50K Hind, 250K Sty, 250K Nsp, 5.0, 6.0 and 500K Sty+Nsp
+-   Illumina: 610Quad, Cyto12, Omni Express, 1M, plus others due to high overlap between Illumina platforms
+-   MPS data: Hapmap2 (for CEU, CHB, JPT and YRI populations) and HapMap3
+-   PLINK data (TODO: should this be included here?)
+
+However, many other chips can be catered for (see -chip section). (TODO: insert cross-reference)
+
+LINKDATAGEN creates output files for the linkage mapping software: ALLEGRO, MERLIN, MORGAN and PLINK, as well as for BEAGLE, FESTIM, PREST, fastPHASE and RELATE. Many of these programs are available through the Rockefeller website (<http://linkage.rockefeller.edu/soft>).
+
+If you use LINKDATAGEN, please acknowledge by citing:
+
+TODO: insert citation for DOI https://doi.org/10.1093/bioinformatics/btp313
+
+If you use the LINKDATAGEN -data m option along with vcf2linkdatagen.pl then please also cite:
+
+TODO: insert citation https://doi.org/10.1186/gb-2011-12-9-r85
+
+
