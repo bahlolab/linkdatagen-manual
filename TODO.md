@@ -1,0 +1,1 @@
+- Ensure the *recent changes* section in manual r997 information is present elsewhere in this manual.
