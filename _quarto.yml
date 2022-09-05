@@ -1,0 +1,25 @@
+project:
+  type: book
+
+book:
+  title: "linkdatagen-manual"
+  author: "Developed by Melanie Bahlo and Catherine Bromhead, and with help from Tom Scerri, Katherine Smith, Rick Tankard and Luke Gandolfo."
+  date: "05/09/2022"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+  docx:
+    default
+
+editor: visual
+
