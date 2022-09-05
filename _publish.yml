@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: 7266da75-71b5-4943-9ecc-4a305b352d00
+      url: 'https://verdant-begonia-096e19.netlify.app'

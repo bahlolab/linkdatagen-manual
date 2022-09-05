@@ -22,9 +22,12 @@ bibliography: references.bib
 format:
   html:
     theme: cosmo
-  pdf:
-    documentclass: scrreprt
-  docx:
-    default
+#   pdf:
+#     documentclass: scrreprt
+#  docx:
+#    default
 
 editor: visual
+
+execute:
+  freeze: auto
