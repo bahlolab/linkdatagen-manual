@@ -8,8 +8,13 @@ book:
   lang: en-GB
   chapters:
     - index.qmd
-    - download_and_install.qmd
-    - summary.qmd
+    - download.qmd
+    - usage.qmd
+    - further-comments.qmd
+    - general-comments.qmd
+    - marker-frequency.qmd
+    - test-datasets.qmd
+    - help-acknowledgments.qmd
     - references.qmd
 
 bibliography: references.bib

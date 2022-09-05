@@ -1,0 +1,20 @@
+---
+title: "Help, bug reports and acknowledgements"
+editor: visual
+---
+
+:::{.callout-warning}
+## Work in progress
+This manual is a work in progress. 
+Until it is complete, please continue using LINKDATAGEN from
+<https://bioinf.wehi.edu.au/software/linkdatagen/>.
+:::
+
+
+Many present and past members of the Bahlo lab have
+contributed to the development of this software by suggesting improvements,
+writing code and documentations and most of all using it. Special thanks go to:
+Catherine Bromhead, Katherine Smith, Tom Scerri, Vesna Lukic and Rick Tankard.
+
+For bug reports or other problems
+please email [bahlo\@wehi.edu.au](mailto:bahlo@wehi.edu.au).
