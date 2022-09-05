@@ -3,7 +3,13 @@ project:
 
 book:
   title: "linkdatagen-manual"
-  author: "Developed by Melanie Bahlo and Catherine Bromhead, and with help from Tom Scerri, Katherine Smith, Rick Tankard and Luke Gandolfo."
+  author:
+    - Melanie Bahlo
+    - Catherine Bromhead
+    - Tom Scerri
+    - Katherine Smith
+    - Rick Tankard
+    - Luke Gandolfo
   date: "5 Sep 2022"
   lang: en-GB
   chapters:
