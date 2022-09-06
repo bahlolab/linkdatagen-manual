@@ -2,3 +2,4 @@
 - Include MPS quickstart
 - Write a SNP chip quickstart
 - Write tutorial for PLINK
+- Mention plot_genome_LOD.R script and have it available to download
