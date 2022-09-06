@@ -16,7 +16,7 @@ book:
     - index.qmd
     - download.qmd
 
-    - part: Getting started'
+    - part: Getting started
       chapters:
       - snp-chip-quick-start.qmd
       - mps-quick-start.qmd
