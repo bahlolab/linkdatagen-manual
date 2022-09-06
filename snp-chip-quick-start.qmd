@@ -1,7 +1,4 @@
----
-title: "SNP chip quick start"
-editor: visual
----
+# SNP chip quick start {#sec-snp-chip-quick-start}
 
 ::: callout-warning
 ## Work in progress
@@ -9,8 +6,8 @@ editor: visual
 This manual is a work in progress. Until it is complete, please continue using LINKDATAGEN from <https://bioinf.wehi.edu.au/software/linkdatagen/>.
 :::
 
-
 ::: callout-note
-## Work in progress
-If your SNP data is in PLINK format, please see
+## PLINK format
+
+If your SNP data is in PLINK format, please see @sec-mps-quick-start.
 :::

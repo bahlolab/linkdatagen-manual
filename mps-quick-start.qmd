@@ -1,7 +1,4 @@
----
-title: "MPS and PLINK format quick start"
-editor: visual
----
+# MPS and PLINK format quick start {#sec-mps-quick-start}
 
 ::: callout-warning
 ## Work in progress

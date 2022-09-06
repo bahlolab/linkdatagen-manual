@@ -31,6 +31,7 @@ LINKDATAGEN selects markers for linkage and association analyses and performs nu
 
 However, many other chips can be catered for (see -chip section). (TODO: insert cross-reference)
 
+*(TODO: insert links to other software.)*
 LINKDATAGEN creates output files for the linkage mapping software: ALLEGRO, MERLIN, MORGAN and PLINK, as well as for BEAGLE, FESTIM, PREST, fastPHASE and RELATE. Many of these programs are available through the Rockefeller website (<http://linkage.rockefeller.edu/soft>).
 
 If you use LINKDATAGEN, please acknowledge by citing:
