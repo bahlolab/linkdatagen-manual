@@ -1,0 +1,680 @@
+# Command line options
+
+::: callout-warning
+## Work in progress
+
+This manual is a work in progress. Until it is complete, please continue using LINKDATAGEN from <https://bioinf.wehi.edu.au/software/linkdatagen/>.
+:::
+
+Typing linkdatagen.pl -help on the command line will provide a complete list of options available.  However, please still read this manual first before using LINKDATAGEN.
+
+ 
+
+The following section describes each of the options available when running LINKDATAGEN.
+
+**\
+**
+
+## 1.1. Mandatory
+
+options:
+
+-data { a , i , m }
+
+This indicates the genotype data source and is one of three options:
+
+ 
+
+a   =  Affymetrix SNP chip data
+
+i   =  Illumina SNP chip data
+
+m =  massively parallel sequencing (MPS; or NGS) data.
+
+ 
+
+If Affymetrix or MPS data is used, then the ‑callFile option is required. If Illumina data is used, then the ‑callDir option is required instead.
+
+ 
+
+-pedfile \< filename \>
+
+A standard (common) pedigree file (pedfile) with 6 columns:
+
+ 
+
+1.     FID:    Family (pedigree) ID
+
+2.     IID:     Individual's ID
+
+3.     PID:    Paternal (father's) ID (0 if individual is a founder)
+
+4.     MID:  Maternal (mother's) ID (0 if individual is a founder)
+
+5.     SEX:   Sex of individual (0 = unknown, 1 = male, 2 = female)
+
+6.     AFF:   Affection status (0 = unknown, 1 = unaffected, 2 = affected)
+
+ 
+
+The columns of the pedigree file can be separated by tabs or spaces. A header row is optional. If the first row of the pedigree file does not contain any digits (numbers), then it will be assumed to be a header row --- in other words, digits are not allowed in the header row. This file must be in the working directory that LINKDATGEN is run from.
+
+ 
+
+As an example of a pedfile, consider the pedigree:
+
+TODO: insert pedigree  
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+\
+
+\
+
+The pedfile for this family ("Family 1") is:
+
+ 
+
+FID      IID      PID      MID    SEX    AFF
+
+1          1          0          0          1          1
+
+1          2          0          0          2          2
+
+1          3          1          2          2          2
+
+1          4          1          2          2          1
+
+1          5          1          2          1          2
+
+ 
+
+Further notes on how to code up pedigree files can be found at the MERLIN website under "Describing Relationships Between Individuals" at:
+
+ 
+
+http://www.sph.umich.edu/csg/abecasis/Merlin/tour/input_files.html
+
+ 
+
+LINKDATAGEN allows input of multiple families (pedigrees) in a single pedfile. In such a pedfile, each family (pedigree) will require a unique family ID (FID).  Care needs to be taken with the -removeWFHBS option if this is the case.
+
+ 
+
+-whichSamplesFile \< filename \>\
+
+-whichSamplesList \< filename \>
+
+LINKDATAGEN requires one, and **only one**, of these two options.  They are **mutually exclusive**.  Both options work similarly in that they **connect the genotype data to the correct individuals in the pedfile**.  They differ in their usage with regard to the data type.  No matter which option is used, the file indicated by that option must be put in the working directory in which LINKDATAGEN is being run. If LINKDATAGEN complains of errors then it is worthwhile double-checking this file.
+
+ 
+
+The "[whichSamplesFile]{.underline}" file contains a single line of N values, where N equals the number of individuals in the pedfile. The values must be separated by tabs or spaces. The *k*th value in the "whichSamplesFile" indicates where to find genotypes for the individual listed in the *k*th row of the pedigree file. The value 0 indicates that the corresponding individual is not genotyped; otherwise:
+
+ 
+
+·      For Affymetrix SNP chip data and MPS data, specify the index of the column in the BRLMM file that lists that individual's genotypes. The first column of the BRLMM file lists the SNP names, so specify 1 for the first genotype column (second column overall), etc. The name (and path if necessary) of the BRLMM file must be specified when using ‑callFile \< filename \>
+
+·      For Illumina data the value X is given for each individual, where the file containing genotypes for that individual has a name "\*\_FinalReportX.txt" (**see next paragraph** for more complete details).
+
+ 
+
+If using -whichSamplesFile for Illumina data, then the "Final Report" files must be named \*\_FinalReportX.txt, where X is the corresponding numeric entry in the "whichSamplesFile".  It is also required that the -callDir option specifies the location of the \*\_FinalReportX.txt files **and** simultaneously specifies the exact prefix (\*) of the \*\_FinalReportX.txt files.  The following example should help clarify these instructions. 
+
+ 
+
+Suppose we genotyped the children (3, 4 and 5) from "Family 1" (above), and that the genotype data are in a folder called "/GenoData/" with the filenames Fam1_FinalReport1.txt, Fam1_FinalReport3.txt and Fam1_FinalReport2.txt in that order.
+
+ 
+
+We would have to specify "-callDir /GenoData/Fam1", and then we would use the ‑whichSamplesFile option to specify a file containing the single line:
+
+ 
+
+0 0 1 3 2
+
+ 
+
+This means that the genotypes from the parents are not available and the genotypes for individuals 3, 4 and 5 are found in the files Fam1_FinalReport1.txt, Fam1_FinalReport3.txt and Fam1_FinalReport2.txt, respectively, in the folder "/GenoData/".
+
+ 
+
+For Illumina data, the alternative option -whichSamplesList specifies a file containing one line for each individual in the pedfile, with each line corresponding to an individual in the pedfile in the **same order**.  Each line specifies the filename of the file containing genotypes for that individual, or 0 if no genotypes are available.
+
+ 
+
+Specifying -whichSamplesList only makes sense for Illumina SNP chip data, where genotypes for different individuals are provided in different "Illumina Final Report" files. These generally have names of the form \*\_FinalReport1.txt, \*\_FinalReport2.txt etc\..., in which case you could use ‑whichSamplesFile (**as described above**). Alternatively, -whichSamplesList can specify a file that lists these filenames explicitly and in the corresponding order of the pedfile.  Following the example above for "Family 1", this would be:
+
+ 
+
+0
+
+0
+
+Fam1_FinalReport1.txt
+
+Fam1_FinalReport3.txt
+
+Fam1_FinalReport2.txt
+
+ 
+
+\
+
+-callDir \< path to directory \>\
+
+-callFile \< filename \>
+
+LINKDATAGEN may take up to one of these two options.  They are **mutually exclusive**.  Both options work similarly in that they identify the location of the genotype data.
+
+ 
+
+The -callDir option should **only** be used with Illumina data.  It specifies the directory containing the genotype data files, with one output file per individual, named \*\_Final_ReportX.txt. This option can be ignored for Illumina data either if all the data sits in the working directory, or the full path is specified for the files listed in the file indicated by -whichSamplesList.
+
+ 
+
+The -callFile option can be used with either Affymetix or MPS data types.  It specifies a **single file** containing genotype data for all individuals in the pedfile.
+
+ 
+
+Normally, Affymetrix genotyping data is generated by BRLMM (typically brlmm.calls.txt) or CRLMM (typically crlmm.calls.txt) and contains the genotype calls in a single file.  BRLMM genotypes are coded as -1, 0, 1 and 2 while CRLMM genotypes are coded as 0, 1, 2 and 3.  MPS data can also be coded in a similar way to BRLMM.
+
+ 
+
+The coding of SNP alleles to these formats is derived by coding the A allele as the first alphabetical base, e.g. if a SNP is an A/T polymorphism AA becomes 11, TT 22 and AT 12. Using the HapMap annotation files we always refer to SNPs on the forward (+) strand.  Allele frequencies always refer to the A (not B) allele and thus are a mix of major and minor allele frequencies.  Hence, the BRLMM/CRLMM formats are shown in the table below.
+
+ 
+
+ 
+
+|     |                        |     |                |     |               |     |
+|-----|------------------------|-----|----------------|-----|---------------|-----|
+|     | Genotype               |     | Birdseed/BRLMM |     | R/oligo/CRLMM |     |
+|     |                        |     |                |     |               |     |
+|     | No call / missing data |     | -1             |     | 0             |     |
+|     |                        |     |                |     |               |     |
+|     | AA                     |     | 0              |     | 1             |     |
+|     |                        |     |                |     |               |     |
+|     | AB                     |     | 1              |     | 2             |     |
+|     |                        |     |                |     |               |     |
+|     | BB                     |     | 2              |     | 3             |     |
+|     |                        |     |                |     |               |     |
+
+ 
+
+The genotype call file contains one column of SNP identifiers and one column of genotype calls for each individual, for example:
+
+ 
+
+            rs12345678     0          0          1
+
+            rs56789012     2          0          1
+
+            rs13579135     1          1          1
+
+ 
+
+ 
+
+\
+
+-annotfile \< filename \>\
+
+-chip { 1 , 2 , 3 , 4 , 5 , 6 , 7 }
+
+LINKDATAGEN requires one, and **only one**, of these two options.  They are **mutually exclusive**.  Both options work similarly in that they identify the appropriate **annotation file**. The annotation files include data on allele frequencies, and genetic and physical map positions.
+
+ 
+
+The -annotfile option explicitly specifies the filename of the annotation file required.
+
+ 
+
+The -chip option specifies the genotyping platform, relative to the data type, and hence selects the appropriate annotation file:
+
+ 
+
+     -data a -chip { 1 , 2 , 3 , 4 , 5 , 6 , 7 }
+
+     -data i -chip { 1 , 2 , 3 , 4 , 5 , 6 }
+
+     -data m -chip { 1 , 2 }
+
+ 
+
+The choices above correspond to:
+
+ 
+
+|     |          |     |              |     |                        |     |         |     |
+|--------|--------|--------|--------|--------|-----------|--------|--------|--------|
+|     | -chip \# |     | -data a      |     | -data i                |     | -data m |     |
+|     |          |     |              |     |                        |     |         |     |
+|     | 1        |     | 50k Xba      |     |                        |     | HapMap2 |     |
+|     |          |     |              |     |                        |     |         |     |
+|     | 2        |     | 50k Hind     |     | 610Quad                |     | HapMap3 |     |
+|     |          |     |              |     |                        |     |         |     |
+|     | 3        |     | 250k Sty     |     | [\[RT1\]](#_msocom_1)  |     |         |     |
+|     |          |     |              |     |                        |     |         |     |
+|     | 4        |     | 250k Nsp     |     | Cyto12                 |     |         |     |
+|     |          |     |              |     |                        |     |         |     |
+|     | 5        |     | 5.0          |     | Omni Express           |     |         |     |
+|     |          |     |              |     |                        |     |         |     |
+|     | 6        |     | 6.0          |     | 1M                     |     |         |     |
+|     |          |     |              |     |                        |     |         |     |
+|     | 7        |     | 500k Sty+Nsp |     | HapMap2                |     |         |     |
+|     |          |     |              |     |                        |     |         |     |
+|     | 8        |     |              |     | HapMap3                |     |         |     |
+|     |          |     |              |     |                        |     |         |     |
+
+ 
+
+Note:   HapMap2 (only CEU, YRI, CHB, JPT, \~4 million SNPs)
+
+            HapMap3 (all 11 HapMap populations, \~1.5 million SNPs)
+
+ 
+
+Illumina SNP chips have a lot of overlap. Hence, even if no annotation file currently exists, then one can use a related file and probably gain sufficient SNP coverage to allow at least linkage mapping. This includes the ability to specify the HapMap2 and HapMap3 annotation files with the -annotfile option that are universally compatible with MPS and Illumina SNP chip data, namely annotHapMap2U.txt and annotHapMap3U.txt. Overlaps of the various annotations (filtering sites without frequencies) and call files are given in the file on the LINKDATAGEN website linkdatagen_chip_overlaps.xlsx, in summary if you have one of the following Illumina chips then we suggest you perform your analysis with the corresponding annotation for your population:
+
+ 
+
+|     |                   |     |                                                            |     |                             |     |
+|---------|---------|---------|-----------------------|---------|---------|---------|
+|     |                   |     | **Annotation with greatest number of overlapping markers** |     |                             |     |
+|     |                   |     |                                                            |     |                             |     |
+|     | **Illumina chip** |     | **CEU, YRI, CHB, JPT populations only**                    |     | **All HapMap3 populations** |     |
+|     |                   |     |                                                            |     |                             |     |
+|     | 660Quad           |     | HapMap2                                                    |     | 610Quad                     |     |
+|     |                   |     |                                                            |     |                             |     |
+|     | Omni1Quad         |     | HapMap2                                                    |     | Omni Express                |     |
+|     |                   |     |                                                            |     |                             |     |
+|     | Omni2.5           |     | Omni Express                                               |     | Omni Express                |     |
+|     |                   |     |                                                            |     |                             |     |
+|     | Omni5             |     | HapMap2                                                    |     | 1m                          |     |
+|     |                   |     |                                                            |     |                             |     |
+|     | HumanCoreExome    |     | Omni Express                                               |     | Omni Express                |     |
+|     |                   |     |                                                            |     |                             |     |
+
+ 
+
+ 
+
+If using the -chip option, then the -annotDir option is also required.
+
+ 
+
+-annotDir \< path to directory \>
+
+Specify the directory containing the annotation files.  This is mandatory if using the -chip option.
+
+ 
+
+-prog { all \| me \| al \| mo \| pl \| pr \| cp \| be \| fe \| re \| fp }
+
+-popHetTest { summary , verbose , perChr , perChrVerbose\
+
+-freq
+
+LINKDATAGEN requires **at least one of these three options** to be specified; else -bestPopTest alone may be selected (see below).  They all do very different things.  In brief, -prog specifies the type of program specific output formats of files that LINKDATAGEN should create, ‑popHetTest performs a goodness-of-fit test of the selected population allele frequencies against the genotyped samples, and -freq outputs the allele frequencies for the founders of your genotyped samples.
+
+ 
+
+The -prog option allows LINKDATAGEN to output files in different formats:
+
+ 
+
+1.        ALLEGRO { al } (Gudbjartsson, et al., 2000; Gudbjartsson, et al., 2005)
+
+2.        MERLIN { me } (Abecasis, et al., 2002; Abecasis and Wigginton, 2005)
+
+3.        MORGAN { mo } (Thompson, 1995; Thompson, 2000)
+
+4.        PREST { pr } (McPeek and Sun, 2000)
+
+5.        PLINK { pl } (Purcell, et al., 2007)
+
+6.        BEAGLE { be } (Browning 2006; Browning & Browning 2007)
+
+7.        FESTIM { fe } (Leutenegger 2006)
+
+8.        RELATE { re } (Albrechtsen et al. 2009, Albrechtsen et al. 2011)
+
+9.        fastPHASE { fp } (Scheet and Stephens, 2006)
+
+10.     Our COMPLETE genotype format { cp }
+
+11.     All of the above { all }
+
+ 
+
+These can be selected individually or a comma separated list, e.g. to generate files for MERLIN, FESTIM and RELATE only, use "-prog me,fe,re".
+
+ 
+
+ALLEGRO and MERLIN are exact multipoint linkage analysis programs, MORGAN allows a variety of Markov Chain Monte Carlo (MCMC) calculations but in particular is currently set up to perform MCMC multipoint linkage analysis.
+
+ 
+
+PREST allows the identification of pedigree errors. PLINK is a program geared towards genome wide association analysis.  BEAGLE can be used for genotype imputation, phasing and detection of IBD/HBD between individuals.  FEstim can infer inbreeding coefficients and adjust linkage results based on inbreeding. RELATE also infers inbreeding and relatedness, but in the presence of linkage disequilibrium. Genotype imputation can be performed with fastPHASE.
+
+ 
+
+LINKDATAGEN also outputs our own COMPLETE { cp } format for analysis of identity-by-state sharing (IBS). This format should be used with "-binsize 0" so that all data is displayed.  The outputted data is in CRLMM/R-oligo format:
+
+ 
+
+|     |                        |     |       |     |
+|-----|------------------------|-----|-------|-----|
+|     | Genotype               |     | CRLMM |     |
+|     |                        |     |       |     |
+|     | No call / missing data |     | 0     |     |
+|     |                        |     |       |     |
+|     | AA                     |     | 1     |     |
+|     |                        |     |       |     |
+|     | AB                     |     | 2     |     |
+|     |                        |     |       |     |
+|     | BB                     |     | 3     |     |
+|     |                        |     |       |     |
+
+ 
+
+Using "-prog cp" prints out individuals sorted by affection status with genotyping data displayed with SNPs in rows and individuals in columns. SNPs are ordered by genetic map distance. Three IBS sharing statistics modelled on the optimal S sharing statistics proposed by McPeek (McPeek, 1999) are implemented in the columns after the affecteds:
+
+ 
+
+1.     S_robdom --- suitable for dominant pedigree but robust to a range of disease allele frequencies and penetrances
+
+2.     S_HBS --- suitable for homozygosity mapping
+
+3.     S_pairs --- suitable for recessive diseases not covered by homozygosity mapping
+
+ 
+
+These have all been rescaled to lie between 0 and 1.
+
+ 
+
+The \*.cp files are best opened in EXCEL and annotated as desired by the researcher.
+
+ 
+
+The -popHetTest performs a goodness-of-fit test comparing the **observed** genotype counts (AA, AB and BB) of SNPs from the genotyped sample(s) against the **expected** genotype counts given the selected population (e.g. CEU or JPT).  This test is useful to establish whether or not the selected population allele frequencies are a good match for the genotyped sample(s).  When using this option, it is **recommended** to select the most heterozygous SNPs from each bin (**do not use** -randomSNP) and not to filter out SNPs displaying homozygosity-by-state (**do not use** ‑removeWFHBS).
+
+ 
+
+One of four **mutually exclusive** values can be supplied when running -popHetTest:
+
+ 
+
+a)        summary --- (the default, not required to be specified) gives a small table of genome-wide and autosome-wide chi-square values for each sample; file generated called "popHetTest.txt".
+
+ 
+
+b)        verbose --- gives the observed and expected counts used to derive the genome and autosome test statistics; file generated called "popHetTestDetails.txt".
+
+ 
+
+c)        perChr --- gives the test statistics for each chromosome individually as well as for the genome and autosome; file generated called "popHetTestDetails.txt".
+
+ 
+
+d)        perChrVerbose --- gives everything --- all observed and expected counts for each chromosome, the genome and the autosome, used to derive the test statistics; file generated called "popHetTestDetails.txt".
+
+ 
+
+The -freq option makes LINKDATAGEN output allele frequency estimates from the founders in the family. This option generates a file called "alleleFreqs.txt". This file contains data from all SNPs with no Mendelian errors and gives the allele frequency estimates based on founders alongside the specific population allele frequency estimates that have been selected.
+
+ 
+
+If there are many founders (\>30, i.e. \>60 alleles) in the pedigree files then allele frequencies estimated from the data itself could be used as the population allele frequency in the generation of the linkage files. This could be useful for boutique populations. To do this, one would LINKDATAGEN twice, once to generate the frequency files with -freq, and then again with the "homemade" annotation data and the -prog option of choice.  The "homemade" annotation data could be constructed by appending your column of allele frequencies to the end of an already existing annotation file, and then using the -popCol option to specify the exact column containing your custom allele frequencies.
+
+ 
+
+-bestPopTest
+
+This option is a **mutually exclusive** alternative to the options ‑prog , ‑freq , and ‑popHetTest . In effect, ‑bestPopTest cycles through ‑popHetTest and tests each of the available populations in the annotation file to see which population allele frequencies best fit the allele frequencies of the given sample(s).
+
+ 
+
+## 1.2. Other options[\[RT2\]](#_msocom_2) :
+
+-randomSNP
+
+If not defined, the default setting is to select the SNP with highest heterozygosity in the genetic map interval (size defined by -binsize), as calculated using the selected population allele frequencies. Specifying -randomSNP leads to random marker selection in any given genetic map.
+
+ 
+
+High heterozygosity markers give a set of more highly informative markers for most analyses, such as linkage mapping. There would be little reason, or need, to use the -randomSNP option.
+
+ 
+
+-binsize { real number \>= 0.0 }
+
+Default setting is 0.3 cM. The -binsize parameter exists to allow selection of markers in approximate linkage equilibrium. It works by selecting non-overlapping bins (or windows) of markers within a span of the -binsize length (cM). From these markers either a random (-randomSNP) or the highest heterozygosity marker (default) according to the stipulated HapMap population (default is the HapMap CEU dataset), is chosen from the bin to be its representative in the dataset. A minimum distance is imposed to make sure that markers are sufficiently distant (and hence not in linkage disequilibrium). Whilst MERLIN, RELATE and BEAGLE have internal methods of dealing with linkage disequilibrium, such as cluster analysis, ALLEGRO, MORGAN, FEstim, and PREST do not.
+
+ 
+
+-outputdir \< prefix \>
+
+The prefix to the name of the directories into which LINKDATAGEN will write all the files.
+
+ 
+
+-keepME
+
+Specify if markers found with Mendelian Errors are **NOT** to be removed from dataset. *The default is to perform Mendelian error checking and remove SNPs that are found to contain a Mendelian error.* Since we usually have so many markers to choose from this hardly makes a difference. It also enables creation of MORGAN and ALLEGRO input files without having to tediously remove Mendelian errors afterwards since neither of these programs allow for this.
+
+ 
+
+LINKDATAGEN produces extensive output based on the Mendelian errors summarised per chromosome and by individual. Note that the by individual summarisation is only possible for individuals whose parents are at least partially genotyped.  Thus high error rates in some individuals need to be interpreted with caution; that is, one of their parents could be the individual whose sample is problematic, not the actual individual in whom the high count of errors has been listed. For example if multiple siblings appear to have high Mendelian error rates then it is much more likely that the parent is the problem.
+
+ 
+
+A log file is created called "mendelErrors.txt" which lists all SNPs with at least one Mendelian error detected, in genetic map position order. This is useful when there are gross cytogenetic abnormalities as these are reflected as runs of Mendelian errors.
+
+ 
+
+-minDist { real number \>= 0.0 }
+
+Set the minimum distance between markers. This is the minimum distance that needs to be maintained between neighbouring SNPs chosen as representatives of their bin. This parameter ensures that markers don't get too close, possibly ending up in linkage disequilibrium. If this can't be satisfied no marker is chosen for that bin. This means that consecutive bins may end up with no marker data. We have found this to be of little consequence since the marker datasets are usually very large. However please consult the log file missingMarkers.txt to check if any large genomic regions have been left uncovered. *The default setting is 0.5\*binsize, and since the default -binsize is 0.3 cM, this is 0.15 cM.  The maximum this value can take when not explicitly defined is 0.2 cM (for any ‑binsize \>= 0.4, the default value of -minDist is set to 0.2).*
+
+ 
+
+-removeWFHBS { i, u }
+
+Remove "within/whole-family homozygosity-by-state" (WFHBS) SNP markers. To be used with caution.  If analysing multiple families, the default behaviour is remove the **union** (**u**) of WFHBS SNP markers; that is any SNP marker displaying WFHBS in **any** family.  Alternatively, LINKDATAGEN can be forced to remove the **intersection** (**i**) of WFHBS SNP markers; that is any SNP displaying WFHBS in **all** families. For details see section 4.3.
+
+ 
+
+-noX
+
+Specify if you wish the X chromosome to be excluded from output.
+
+ 
+
+-crlmm
+
+CRLMM data option. Use when genotypes are coded 0 (missing), 1, 2 and 3.  The default is BRLMM data when genotypes are coded -1 (missing), 0, 1 or 2. This option is only relevant for -data a (Affymetrix) and usually not needed.
+
+ 
+
+-pop { ASW , CEU , CHB , CHD , GIH , JPT , LWK , MEX , MKK , TSI , YRI }
+
+Population allele frequency choice (**see 4.4 below**).  Default is CEU.
+
+ 
+
+|     |           |     |                                                                                     |     |
+|--------|--------|--------|----------------------------------------|--------|
+|     | **Value** |     | **Population (description)**                                                        |     |
+|     |           |     |                                                                                     |     |
+|     | ASW       |     | African ancestry in Southwest USA                                                   |     |
+|     |           |     |                                                                                     |     |
+|     | CEU       |     | Utah residents with Northern and Western European ancestry from the CEPH collection |     |
+|     |           |     |                                                                                     |     |
+|     | CHB       |     | Han Chinese in Beijing, China                                                       |     |
+|     |           |     |                                                                                     |     |
+|     | CHD       |     | Chinese in Metropolitan Denver, Colorado                                            |     |
+|     |           |     |                                                                                     |     |
+|     | GIH       |     | Gujarati Indians in Houston, Texas                                                  |     |
+|     |           |     |                                                                                     |     |
+|     | JPT       |     | Japanese in Tokyo, Japan                                                            |     |
+|     |           |     |                                                                                     |     |
+|     | LWK       |     | Luhya in Webuye, Kenya                                                              |     |
+|     |           |     |                                                                                     |     |
+|     | MEX       |     | Mexican ancestry in Los Angeles, California                                         |     |
+|     |           |     |                                                                                     |     |
+|     | MKK       |     | Maasai in Kinyawa, Kenya                                                            |     |
+|     |           |     |                                                                                     |     |
+|     | TSI       |     | Toscans in Italy                                                                    |     |
+|     |           |     |                                                                                     |     |
+|     | YRI       |     | Yoruba in Ibadan, Nigeria (West Africa)                                             |     |
+|     |           |     |                                                                                     |     |
+
+ 
+
+-popCol { integer \>= 1 }
+
+An alternative option to -pop that allows the exact column to be selected from an annotation file, without relying on choosing the actual population name.
+
+ 
+
+-regions { #, chr#, #:#####-#####, chr#:#####-#####, ... }\
+
+-regionsFile \< filename \>
+
+Both options restrict analyses to particular regions.  With ‑regions a comma separated list of regions (as above) are specified where the \# following "chr" is a number from 1-22 or X, Y and Z, and the subsequent #####s are start and stop base-pair positions. Whole chromosomes can be specified by supplying "chr#" or just alone "\#" alone. With ‑regionsFile a file is specified containing each region per line. The format can also be space-delimited:
+
+\
+
+chr#:####-####\
+
+chr# \#### \####
+
+chr#
+
+ 
+
+-fileKeepSNPs \< filename \>\
+
+-fileRemoveSNPs \< filename \>
+
+Both options specify a file containing a list of SNPs (e.g. rs#####) one-per-a-line:
+
+ 
+
+rs1234512
+
+rs2345641
+
+rs4353534
+
+rs3453434
+
+ 
+
+Option -fileRemoveSNPs will remove these SNPs from the selection process, thereby preventing them from being selected.
+
+ 
+
+Option -fileKeepSNPs will only keep those SNPs for the selection process, thereby allowing only those SNPs listed to be selected.  That is not to say all these SNPs will be selected (unless -binsize 0), but simply this list constrains the choice of SNPs that can be selected from.
+
+ 
+
+Hence, both -fileRemoveSNPs and -fileKeepSNPs could (theoretically) be used to produce the same list of SNPs to be selected from.  One option may be preferential to the other.
+
+ 
+
+A SNP in the "remove" list will **not** be kept if it is also in the "keep" list. That is, the "remove" list overrides the "keep" list when the same SNP appears twice.
+
+ 
+
+The "remove" list might be used to exclude problematic SNPs that you can not otherwise easily remove from your dataset, or it may be used to pick a completely different list of SNPs (with no intersection) to run through linkage/FEstim a second time round to see that you get similar results with different SNPs.
+
+ 
+
+The "keep" list might be useful if you want to try to replicate something with exactly the same list of SNPs, e.g. you might want to try different population allele frequencies, or different families with the same list of SNPs.  In both cases you might first use -binsize 0.3 to select your SNPs, and then subsequently use -binsize 0 to make sure all the same SNPs are selected.
+
+ 
+
+Any listed SNP that is not in the annotation file will be ignored --- there is no warning to say it has been removed or kept.
+
+ 
+
+**\
+**
+
+## 1.3. Output files:
+
+The output files depends on the -prog/-popHetTest/-freq option chosen, however there are several log files of interest that are written to the \< outputdir \>\_tables folder regardless of choice. These include:
+
+ 
+
+1.     missingMarkers.txt
+
+ 
+
+                  Bins with no SNP representation.
+
+ 
+
+2.     chrX_SNPs.txt
+
+ 
+
+                  SNPs on the X chromosome.
+
+ 
+
+3.     chrY_SNPs.txt
+
+ 
+
+                  SNPs on the Y chromosome.
+
+ 
+
+4.     chrMT_SNPs.txt
+
+ 
+
+                  SNPs on the mitochondrial chromosome.
+
+ 
+
+5.     mendelErrors.txt
+
+ 
+
+SNPs with Mendelian errors ordered by chromosome and genetic map position. This file can identify gross cytological changes such as CNVs.
+
+ 
+
+6.     selectedSNPs.txt
+
+ 
+
+                  SNPs selected for analysis or output with -prog or -popHetTest .
+
+ 
+
+------------------------------------------------------------------------
+
+ [\[RT1\]](#_msoanchor_1)We have not created hg19 annotation files for for 660Quad (3) or 370Duo (1), I have deleted these from the documentation
+
+ [\[RT2\]](#_msoanchor_2)This script still has many undocumented options. If this is to be added then put in at a later date so I can upload this. This includes -plSim \<value\>, -minMAF \<float\>, -maxMAF \<float\> and -kct
