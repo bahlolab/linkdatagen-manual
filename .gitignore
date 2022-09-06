@@ -4,3 +4,8 @@
 .Ruserdata
 /.quarto/
 _book
+*.toc
+*.tex
+*.aux
+*.log
+*.pdf
