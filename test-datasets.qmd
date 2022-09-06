@@ -13,9 +13,7 @@ This manual is a work in progress. Until it is complete, please continue using L
 
 A small test sample data set is available for download from the website (testdata.tar.gz). The tarred zipped archive includes a small nuclear pedigree with 3 children (ped1.ped), a whichSamplesFile (wsf), a file with genotyping calls from the Affymetrix 6.0 chip (calls.txt) and a shell script to run LINKDATAGEN (runlinkdatagen.sh). NOTE: The user may need to change the location of annotation directories with -annotDir to somewhere other than the current working dir.
 
-## Next generation sequencing
-
-(NGS)
+## Next generation sequencing (NGS)
 
 Three test data sets are available for download. These are the three datasets corresponding to three pedigrees described in @smith2011reducing. For each individual in each dataset there are three files:
 
