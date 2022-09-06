@@ -1,5 +1,5 @@
 ---
-title: "Help, bug reports and acknowledgements"
+title: "Help and bug reports"
 editor: visual
 ---
 

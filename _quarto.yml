@@ -15,15 +15,25 @@ book:
   chapters:
     - index.qmd
     - download.qmd
-    - snp-chip-quick-start.qmd
-    - mps-quick-start.qmd
-    - command-line-options.qmd
-    - further-comments.qmd
-    - general-comments.qmd
-    - marker-frequency.qmd
-    - test-datasets.qmd
-    - help-acknowledgments.qmd
-    - references.qmd
+
+    - part: Getting started'
+      chapters:
+      - snp-chip-quick-start.qmd
+      - mps-quick-start.qmd
+      - command-line-options.qmd
+
+    - part: General notes
+      chapters:
+      - further-comments.qmd
+      - general-comments.qmd
+      - marker-frequency.qmd
+      - test-datasets.qmd
+
+    - part: Postface
+      chapters:
+      - help.qmd
+      - acknowledgments.qmd
+      - references.qmd
 
 bibliography: references.bib
 
