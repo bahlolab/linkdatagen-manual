@@ -15,7 +15,9 @@ book:
   chapters:
     - index.qmd
     - download.qmd
-    - usage.qmd
+    - snp-chip-quick-start.qmd
+    - mps-quick-start.qmd
+    - command-line-options.qmd
     - further-comments.qmd
     - general-comments.qmd
     - marker-frequency.qmd
