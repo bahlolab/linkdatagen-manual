@@ -3,45 +3,32 @@ title: "Test datasets"
 editor: visual
 ---
 
-:::{.callout-warning}
+::: callout-warning
 ## Work in progress
-This manual is a work in progress. 
-Until it is complete, please continue using LINKDATAGEN from
-<https://bioinf.wehi.edu.au/software/linkdatagen/>.
+
+This manual is a work in progress. Until it is complete, please continue using LINKDATAGEN from <https://bioinf.wehi.edu.au/software/linkdatagen/>.
 :::
 
-## 1.1. Affymetrix
+## Affymetrix
 
 A small test sample data set is available for download from the website (testdata.tar.gz). The tarred zipped archive includes a small nuclear pedigree with 3 children (ped1.ped), a whichSamplesFile (wsf), a file with genotyping calls from the Affymetrix 6.0 chip (calls.txt) and a shell script to run LINKDATAGEN (runlinkdatagen.sh). NOTE: The user may need to change the location of annotation directories with -annotDir to somewhere other than the current working dir.
 
- 
-
-## 1.2. Next generation sequencing
+## Next generation sequencing
 
 (NGS)
 
-Three test data sets are available for download. These are the three datasets corresponding to three pedigrees described in Smith et al (2011). For each individual in each dataset there are three files:
+Three test data sets are available for download. These are the three datasets corresponding to three pedigrees described in @smith2011reducing. For each individual in each dataset there are three files:
 
-    (i)         A VCF file containing all possible SNPs from HapMap Phase II SNPs
-
-  (ii)         A FinalReport file and
-
- (iii)         A VCF file containing only the SNP genotypes from the MPS data at the location of the genotyping array SNPSs. (iii) is merely for concordance checks.
-
- 
+(i) A VCF file containing all possible SNPs from HapMap Phase II SNPs
+(ii) A FinalReport file and
+(iii) A VCF file containing only the SNP genotypes from the MPS data at the location of the genotyping array SNPs. This is merely for concordance checks.
 
 The three families are:
 
- 
+(i) Family A: Single affected individual, recessive family, homozygosity mapping
+(ii) Family T: Single affected individual, recessive family, homozygosity mapping
+(iii) Family M: Two affected siblings, dominant family.
 
-    (i)         Family A: Single affected individual, recessive family, homozygosity mapping
-
-  (ii)         Family T: Single affected individual, recessive family, homozygosity mapping
-
- (iii)         Family M: Two affected siblings, dominant family.
-
- 
-
-## 1.3. Illumina
+## Illumina
 
 The three families above can be used as example datasets for Illumina data.
