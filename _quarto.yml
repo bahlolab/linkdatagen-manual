@@ -20,13 +20,14 @@ book:
 
   chapters:
     - index.qmd
-    - download.qmd
 
     - part: Getting started
       chapters:
+      - download.qmd
       - snp-chip-quick-start.qmd
       - mps-quick-start.qmd
       - command-line-options.qmd
+      - cheat-sheet.qmd
 
     - part: General notes
       chapters:
@@ -42,6 +43,8 @@ book:
       - references.qmd
 
 bibliography: references.bib
+
+number-sections: true
 
 format:
   html:
