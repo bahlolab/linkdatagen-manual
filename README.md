@@ -1,8 +1,11 @@
-This is the source of the LINKDATAGEN manual at [linkdatagen.netlify.app](https://linkdatagen.netlify.app "LINKDATAGEN Manual").
+This is the source of the LINKDATAGEN manual:
+- Website: [linkdatagen.netlify.app](https://linkdatagen.netlify.app "LINKDATAGEN Manual")
+- PDF: [linkdatagen-manual.pdf](http://linkdatagen.netlify.app/linkdatagen-manual.pdf) 
+- MS Word: [linkdatagen-manual.docx](http://linkdatagen.netlify.app/linkdatagen-manual.docx)
 
 This is currently a work in progress and users should continue to download documentation at https://bioinf.wehi.edu.au/software/linkdatagen/
 
-If you spot spelling/grammar mistakes in the manual, please [submit an issue](https://github.com/bahlolab/linkdatagen-manual/issues).
+If you spot **spelling/grammar mistakes** in the manual, please [submit an issue](https://github.com/bahlolab/linkdatagen-manual/issues).
 Pull requests should be accompanied by the note: "I assign the copyright of this contribution to Melanie Bahlo".
 
 **Questions** about the LINKDATAGEN software should be submitted to [LINKDATAGEN Discussions](https://github.com/bahlolab/linkdatagen/discussions). 
