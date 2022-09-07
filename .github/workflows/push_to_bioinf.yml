@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
   push:
-    branches: main, actions_test
+    branches: [ main, actions_test ]
 
 name: Quarto publish to another Github repository
 
