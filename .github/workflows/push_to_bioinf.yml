@@ -3,7 +3,7 @@ on:
   push:
     branches: [ main, actions_test ]
 
-name: Quarto publish to another Github repository
+name: Quarto publish to bioinf
 
 jobs:
   build-deploy:
