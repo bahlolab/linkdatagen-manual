@@ -37,7 +37,7 @@ jobs:
           LDG_SITE=test-linkdatagen-manual/path/to/ldg
           mkdir -p "$LDG_SITE"
           rm -fr "$LDG_SITE"/*
-          cp -R _book/* "$LDG_SITE/""
+          cp -R _book/* "$LDG_SITE/"
           cd "$LDG_SITE"
           git add *
           git commit -m "linkdatagen - ${GITHUB_SHA}"
