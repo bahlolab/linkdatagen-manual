@@ -15,7 +15,7 @@ jobs:
       - name: Clone Website repository
         shell: bash
         env:
-          ACCESS_TOKEN: ${{ secrets.TRICKYTANK_REPO_ACCESS_TOKEN }}
+          ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
         run: |
           git clone https://trickytank:${ACCESS_TOKEN}@github.com/trickytank/test-linkdatagen-manual.git
 
@@ -34,7 +34,7 @@ jobs:
       - name: git add, commit and push
         shell: bash
         env:
-          ACCESS_TOKEN: ${{ secrets.TRICKYTANK_REPO_ACCESS_TOKEN }}
+          ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
           COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
           LDG_SITE=test-linkdatagen-manual/path/to/ldg
