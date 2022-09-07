@@ -3,7 +3,7 @@ on:
   push:
     branches: main
 
-name: Quarto Publish to Netlify
+name: Quarto publish to Netlify
 
 jobs:
   build-deploy:

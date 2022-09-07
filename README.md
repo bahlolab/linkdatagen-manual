@@ -1,4 +1,4 @@
-[![Quarto publish to bioinf](https://github.com/bahlolab/linkdatagen-manual/actions/workflows/push_to_bioinf.yml/badge.svg)](https://github.com/bahlolab/linkdatagen-manual/actions/workflows/push_to_bioinf.yml) [![Quarto Publish to Netlify](https://github.com/bahlolab/linkdatagen-manual/actions/workflows/publish_netlify.yml/badge.svg)](https://github.com/bahlolab/linkdatagen-manual/actions/workflows/publish_netlify.yml)
+[![Quarto publish to bioinf](https://github.com/bahlolab/linkdatagen-manual/actions/workflows/push_to_bioinf.yml/badge.svg)](https://github.com/bahlolab/linkdatagen-manual/actions/workflows/push_to_bioinf.yml) [![Quarto publish to Netlify](https://github.com/bahlolab/linkdatagen-manual/actions/workflows/publish_netlify.yml/badge.svg)](https://github.com/bahlolab/linkdatagen-manual/actions/workflows/publish_netlify.yml)
 
 This is the source of the LINKDATAGEN manual: 
 - Website: [linkdatagen.netlify.app](https://linkdatagen.netlify.app "LINKDATAGEN Manual") 
