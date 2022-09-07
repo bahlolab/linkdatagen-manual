@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
   push:
-    branches: main
+    branches: [ main, actions_test ]
 
 name: Quarto publish to another Github repository
 
@@ -13,10 +13,11 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Clone Website repository
+        shell: bash
         env:
           ACCESS_TOKEN: ${{ secrets.TRICKYTANK_REPO_ACCESS_TOKEN }}
         run: |
-          git clone https://${ACCESS_TOKEN}@github.com/trickytank/test-linkdatagen-manual.git
+          git clone https://trickytank:${ACCESS_TOKEN}@github.com/trickytank/test-linkdatagen-manual.git
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -27,16 +28,23 @@ jobs:
 
       - name: Render Quarto Project
         uses: quarto-dev/quarto-actions/render@v2
+        with:
+          to: html
 
       - name: git add, commit and push
+        shell: bash
         env:
           ACCESS_TOKEN: ${{ secrets.TRICKYTANK_REPO_ACCESS_TOKEN }}
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
           LDG_SITE=test-linkdatagen-manual/path/to/ldg
           mkdir -p "$LDG_SITE"
           rm -fr "$LDG_SITE"/*
-          cp -R _book/* "$LDG_SITE/""
+          cp -R _book/* "$LDG_SITE/"
           cd "$LDG_SITE"
+          git config --global user.email "trickytank@users.noreply.github.com"
+          git config --global user.name "Rick Tankard"
           git add *
-          git commit -m "linkdatagen - ${GITHUB_SHA}"
-          git push https://${ACCESS_TOKEN}@github.com/trickytank/test-linkdatagen-manual.git
+          echo -e "LDG - ${COMMIT_MSG}\n\nbahlolab/linkdatagen-manual commit SHA:\n${GITHUB_SHA}" > commit_message.txt
+          git commit --file commit_message.txt
+          git push https://trickytank:${ACCESS_TOKEN}@github.com/trickytank/test-linkdatagen-manual.git

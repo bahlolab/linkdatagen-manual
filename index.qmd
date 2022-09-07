@@ -14,9 +14,9 @@ This manual is a work in progress. Until it is complete, please continue using L
 ::: {.content-visible when-format="html"}
 ::: callout-note 
 ## This manual is also available as a PDF or Word document. 
-[linkdatagen-manual.pdf](linkdatagen-manual.pdf)
+[linkdatagen-manual.pdf](https://linkdatagen.netlify.app/linkdatagen-manual.pdf)
 
-[linkdatagen-manual.docx](linkdatagen-manual.docx)
+[linkdatagen-manual.docx](https://linkdatagen.netlify.app/linkdatagen-manual.docx)
 :::
 :::
 
