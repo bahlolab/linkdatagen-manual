@@ -19,7 +19,7 @@ In the future this may publish to the [Bioinf website](https://bioinf.wehi.edu.a
 It will work by committing changes to the [WEHI-ResearchComputing/bioinf_rehost](https://github.com/WEHI-ResearchComputing/bioinf_rehost) repository through a Github action. 
 This is currently by using a token provided by Rick Tankard that is set to expire on Thu, 7 Sep 2023. If Rick is no longer around, the following actions should be take: 
 
-- A user, who will have their name attached to commits to bioinf_rehost, will have to generate a [personal access token](https://github.com/settings/tokens) on Github with the repo scope only. It is recommended to create a token that expires, up to one year way. 
+- A user, who will have their name attached to commits to bioinf_rehost, will have to generate a [personal access token](https://github.com/settings/tokens) on Github with the repo scope only. It is recommended to create a token that expires, up to one year away. 
 - Copy the token and create and [update the value of the repository secret](https://github.com/bahlolab/linkdatagen-manual/settings/secrets/actions) REPO_ACCESS_TOKEN with this value. 
 - Edit the file [.github/workflows/push_to_bioinf.yml](.github/workflows/push_to_bioinf.yml), changing: 
   - instances of 'trickytank' to your user name on Github 
