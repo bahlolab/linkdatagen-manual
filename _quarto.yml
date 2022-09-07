@@ -26,8 +26,16 @@ book:
       - download.qmd
       - snp-chip-quick-start.qmd
       - mps-quick-start.qmd
+
+    - part: linkdatagen.pl
+      chapters:
       - command-line-options.qmd
       - cheat-sheet.qmd
+
+    - part: VCF and PLINK files
+      chapters:
+      - vcf2linkdatagen.qmd
+      - plink_format_input.qmd
 
     - part: General notes
       chapters:
