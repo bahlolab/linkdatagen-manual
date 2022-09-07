@@ -26,3 +26,9 @@ This is currently by using a token provided by Rick Tankard that is set to expir
   - "Rick Tankard" to your name 
 
 For now this is pushing to a test Github repository to check the concept works.
+
+### Note
+
+The PDF and docx files will not be pushed to the bioinf website due to space considerations. 
+Currently they are served from the Netlify website.
+This will have to be moved if the Netlify website is no longer updating. 
