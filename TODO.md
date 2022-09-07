@@ -3,3 +3,5 @@
 - Write a SNP chip quickstart
 - Write tutorial for PLINK
 - Mention plot_genome_LOD.R script and have it available to download
+- Remove GATK GenotypeCaller and mpileup instructions, and replace with a notice to look at an old manual if this is really required.
+

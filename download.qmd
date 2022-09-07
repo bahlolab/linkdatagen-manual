@@ -1,4 +1,4 @@
-# Download
+# Download and annotations
 
 ::: callout-warning
 ## Work in progress
@@ -6,7 +6,7 @@
 This manual is a work in progress. Until it is complete, please continue using LINKDATAGEN from <https://bioinf.wehi.edu.au/software/linkdatagen/>.
 :::
 
-To download the latest release of LINKDATAGEN, go to the releases page <https://github.com/bahlolab/linkdatagen/releases> and download the most recent `linkdatagen_<version>.zip file`.
+To download LINKDATAGEN, go to the latest release page <https://github.com/bahlolab/linkdatagen/releases/latest> and download the `linkdatagen_<version>.zip file`.
 
 ## Annotations
 
