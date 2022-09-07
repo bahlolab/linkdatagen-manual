@@ -39,6 +39,8 @@ jobs:
           rm -fr "$LDG_SITE"/*
           cp -R _book/* "$LDG_SITE/"
           cd "$LDG_SITE"
+          git config --global user.email "trickytank@users.noreply.github.com"
+          git config --global user.name "Rick Tankard"
           git add *
           git commit -m "linkdatagen - ${GITHUB_SHA}"
           git push https://trickytank:${ACCESS_TOKEN}@github.com/trickytank/test-linkdatagen-manual.git
