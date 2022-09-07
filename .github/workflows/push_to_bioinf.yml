@@ -34,5 +34,5 @@ jobs:
           cp -R _book/* "$LDG_SITE/""
           cd "$LDG_SITE"
           git add *
-          git commit -m "linkdatagen - ${{ GITHUB_SHA }}"
+          git commit -m "linkdatagen - ${GITHUB_SHA}"
           git push https://${{ secrets.TRICKYTANK_REPO_ACCESS_TOKEN }}@github.com/trickytank/test-linkdatagen-manual.git
