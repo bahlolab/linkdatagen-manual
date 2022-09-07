@@ -1,6 +1,6 @@
 [![Quarto publish to bioinf](https://github.com/bahlolab/linkdatagen-manual/actions/workflows/push_to_bioinf.yml/badge.svg)](https://github.com/bahlolab/linkdatagen-manual/actions/workflows/push_to_bioinf.yml) [![Quarto publish to Netlify](https://github.com/bahlolab/linkdatagen-manual/actions/workflows/publish_netlify.yml/badge.svg)](https://github.com/bahlolab/linkdatagen-manual/actions/workflows/publish_netlify.yml)
 
-This is the source of the LINKDATAGEN manual: 
+This is the source of the [LINKDATAGEN](https://github.com/bahlolab/linkdatagen-manual) manual: 
 - Website: [linkdatagen.netlify.app](https://linkdatagen.netlify.app "LINKDATAGEN Manual") 
 - PDF: [linkdatagen-manual.pdf](http://linkdatagen.netlify.app/linkdatagen-manual.pdf) 
 - MS Word: [linkdatagen-manual.docx](http://linkdatagen.netlify.app/linkdatagen-manual.docx)
