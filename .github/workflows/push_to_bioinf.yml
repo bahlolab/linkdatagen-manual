@@ -13,8 +13,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Clone Website repository
+        env:
+          ACCESS_TOKEN: ${{ secrets.TRICKYTANK_REPO_ACCESS_TOKEN }}
         run: |
-          git clone https://${{ secrets.TRICKYTANK_REPO_ACCESS_TOKEN }}@github.com/trickytank/test-linkdatagen-manual.git
+          git clone https://${ACCESS_TOKEN}@github.com/trickytank/test-linkdatagen-manual.git
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -27,6 +29,8 @@ jobs:
         uses: quarto-dev/quarto-actions/render@v2
 
       - name: git add, commit and push
+        env:
+          ACCESS_TOKEN: ${{ secrets.TRICKYTANK_REPO_ACCESS_TOKEN }}
         run: |
           LDG_SITE=test-linkdatagen-manual/path/to/ldg
           mkdir -p "$LDG_SITE"
@@ -35,4 +39,4 @@ jobs:
           cd "$LDG_SITE"
           git add *
           git commit -m "linkdatagen - ${GITHUB_SHA}"
-          git push https://${{ secrets.TRICKYTANK_REPO_ACCESS_TOKEN }}@github.com/trickytank/test-linkdatagen-manual.git
+          git push https://${ACCESS_TOKEN}@github.com/trickytank/test-linkdatagen-manual.git
