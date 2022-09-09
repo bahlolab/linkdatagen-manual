@@ -4,13 +4,17 @@ Title: Linkdatagen Manual
 Version: 0.1.0.9000
 Date: 2022-09-09
 Authors@R: c(
-  person("Rick M", "Tankard", role = c("cre", "aut"),
-    email = "tankard.r@wehi.edu.au",
-    comment = c(ORCID = "0000-0002-8847-9401")),
-  person("Melanie", "Bahlo", role = "aut",
+  person("Melanie", "Bahlo", role = c("cre", "aut"),
     email = "bahlo@wehi.edu.au",
     comment = c(ORCID = "0000-0001-5132-0774"))
-  )
+  ),
+  person("Catherine", "Bromhead", role = "aut"),
+  person("Rick M", "Tankard", role = "aut",
+    email = "tankard.r@wehi.edu.au",
+    comment = c(ORCID = "0000-0002-8847-9401")),
+  person("Katherine", "Smith", role = "aut"), 
+  person("Thomas", "Scerri", role = "aut"), 
+  person("Luke", "Gandolfo"", role = "aut")
 Description: Linkdatagen Manual
 BugReports: https://github.com/bahlolab/linkdatagen-manual/issues
 URL: https://github.com/bahlolab/linkdatagen-manual
