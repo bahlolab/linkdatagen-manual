@@ -18,6 +18,7 @@ Authors@R: c(
 Description: Linkdatagen Manual
 BugReports: https://github.com/bahlolab/linkdatagen-manual/issues
 URL: https://github.com/bahlolab/linkdatagen-manual
+License: file LICENSE.md
 Encoding: UTF-8
 Depends:
     R (>= 3.6),
