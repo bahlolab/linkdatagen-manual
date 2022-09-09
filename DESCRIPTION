@@ -19,6 +19,8 @@ Depends:
     R (>= 3.6),
 Imports:
     rmarkdown,
+    kinship2,
+    purrr,
     jsonlite
 Suggests:
 
