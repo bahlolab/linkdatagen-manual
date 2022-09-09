@@ -22,11 +22,7 @@ Imports:
     kinship2,
     purrr,
     jsonlite
-Suggests:
-
 RoxygenNote: 7.2.1
 LazyData: true
-Collate:
-
 VignetteBuilder: knitr
 Config/testthat/edition: 3
