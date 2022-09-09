@@ -1,0 +1,30 @@
+Package: LinkdatagenManual
+Type: Manual
+Title: Linkdatagen Manual
+Version: 0.1.0.9000
+Date: 2022-09-09
+Authors@R: c(
+  person("Rick M", "Tankard", role = c("cre", "aut"),
+    email = "tankard.r@wehi.edu.au",
+    comment = c(ORCID = "0000-0002-8847-9401")),
+  person("Melanie", "Bahlo", role = "aut",
+    email = "bahlo@wehi.edu.au",
+    comment = c(ORCID = "0000-0001-5132-0774"))
+  )
+Description: Linkdatagen Manual
+BugReports: https://github.com/bahlolab/linkdatagen-manual/issues
+URL: https://github.com/bahlolab/linkdatagen-manual
+Encoding: UTF-8
+Depends:
+    R (>= 3.6),
+Imports:
+    rmarkdown,
+    jsonlite
+Suggests:
+
+RoxygenNote: 7.2.1
+LazyData: true
+Collate:
+
+VignetteBuilder: knitr
+Config/testthat/edition: 3
