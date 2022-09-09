@@ -1,4 +1,4 @@
-# vcf2linkdatagen.pl
+# vcf2linkdatagen.pl {#sec-vcf2linkdatagenpl}
 
 Catherine Bromhead, Melanie Bahlo, 8/7/11. Updated by
 Katherine Smith 15 May 2012. Updated by Tom Scerri/Rick Tankard. 3^rd^

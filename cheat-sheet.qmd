@@ -12,20 +12,20 @@ TODO: these would be better as lists than tables, and wouldn't cause issues in t
 
 Options are grouped. At least one option is required in each group, and when a tick appears in the Mixed column multiple options from that group may be specified.
 
-| Option              | Group   | Mixed | Values                                                               | Summary                                               |
-|-----------|-----------|-----------|-----------------------|-----------------|
-| `-annotFile`        | Annot   | ❌    | \< filename \>                                                       | File containing SNP annotation data.                  |
-| `-chip`             | Annot   | ❌    | { 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8} \[note: must also use \--annotDir\] | Chip (or HapMap) number.                              |
-| `-callDir`          | Call    | ❌    | \< path to directory \>                                              | Directory containing genotype data file(s).           |
-| `-callFile`         | Call    | ❌    | \< filename \>                                                       | File containing genotype data.                        |
-| `-data`             | Data    | NA    | { a , i , m }                                                        | Affymetrix or Illumina SNP chip, or MPS data.         |
-| `-pedfile`          | Pedfile | NA    | \< filename \>                                                       | File containing pedigree information (pedfile).       |
-| `-freq`             | Output  | ✅    | NO VALUE \| Output allele                                            | Frequencies of founders.                              |
-| `-prog`             | Output  | ✅    | { all \| me \| al \| mo \| pl \| pr \| cp \| be \| fe \| re \| fp }  | Format to output data in.                             |
-| `-popHetTest`       | Output  | ✅    | { summary , verbose , perChr , perChrVerbose }                       | Goodness-of-fit test of specified allele frequencies. |
-| `-bestPopTest`      | Output  | ✅    | NO VALUE \[note: mutually exclusive to the other 3 options\]         | Identifies best population using allele frequencies.  |
-| `-whichSamplesFile` | WS      | ❌    | \< filename \>                                                       | File linking pedfile to genotype data file.           |
-| `-whichSamplesList` | WS      | ❌    | \< filename \>                                                       | File linking pedfile to genotype data file(s).        |
+-   Annotation
+    -   `-annotFile < filename >`: File containing SNP annotation data.
+    -   `-chip  {1, 2, 3, 4, 5, 6, 7, 8}`: Chip (or HapMap) number \[note: must also use `--annotDir`\]
+
+| `-callDir` \| Call \| ❌ \| \< path to directory \> \| Directory containing genotype data file(s). \|
+| `-callFile` \| Call \| ❌ \| \< filename \> \| File containing genotype data. \|
+| `-data` \| Data \| NA \| { a , i , m } \| Affymetrix or Illumina SNP chip, or MPS data. \|
+| `-pedfile` \| Pedfile \| NA \| \< filename \> \| File containing pedigree information (pedfile). \|
+| `-freq` \| Output \| ✅ \| NO VALUE \| Output allele \| Frequencies of founders. \|
+| `-prog` \| Output \| ✅ \| { all \| me \| al \| mo \| pl \| pr \| cp \| be \| fe \| re \| fp } \| Format to output data in. \|
+| `-popHetTest` \| Output \| ✅ \| { summary , verbose , perChr , perChrVerbose } \| Goodness-of-fit test of specified allele frequencies. \|
+| `-bestPopTest` \| Output \| ✅ \| NO VALUE \[note: mutually exclusive to the other 3 options\] \| Identifies best population using allele frequencies. \|
+| `-whichSamplesFile` \| WS \| ❌ \| \< filename \> \| File linking pedfile to genotype data file. \|
+| `-whichSamplesList` \| WS \| ❌ \| \< filename \> \| File linking pedfile to genotype data file(s). \|
 
 ## Others
 
@@ -37,7 +37,7 @@ This is a reminder to put it back if it works in the future.
 -->
 ```
 | Option            | Values                                                               | Summary                                             |
-|----------------|--------------------------------|------------------------|
+|-------------------|-------------------------------|-----------------------|
 | `-annotDir`       | \< path to directory \> \[ note: mandatory if using --chip \]        | Directory containing SNP annotation data file.      |
 | `-binsize`        | { real number \>= 0.0 } \[ default = 0.3 \]                          | Non-overlapping bin size (in cM) to divide SNPs.    |
 | `-crlmm`          | NO VALUE                                                             | Declare that data is in CRLMM format.               |

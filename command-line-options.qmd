@@ -1,4 +1,4 @@
-# Command line options
+# Command line options {#sec-linkdatagenpl}
 
 ::: callout-warning
 ## Work in progress
@@ -261,7 +261,7 @@ The choices above correspond to:
  
 
 |     |          |     |              |     |                        |     |         |     |
-|--------|--------|--------|--------|--------|-----------|--------|--------|--------|
+|--------|--------|--------|--------|--------|--------|--------|--------|--------|
 |     | -chip \# |     | -data a      |     | -data i                |     | -data m |     |
 |     |          |     |              |     |                        |     |         |     |
 |     | 1        |     | 50k Xba      |     |                        |     | HapMap2 |     |
@@ -294,7 +294,7 @@ Illumina SNP chips have a lot of overlap. Hence, even if no annotation file curr
  
 
 |     |                   |     |                                                            |     |                             |     |
-|---------|---------|---------|-----------------------|---------|---------|---------|
+|----------|----------|----------|-------------|----------|----------|----------|
 |     |                   |     | **Annotation with greatest number of overlapping markers** |     |                             |     |
 |     |                   |     |                                                            |     |                             |     |
 |     | **Illumina chip** |     | **CEU, YRI, CHB, JPT populations only**                    |     | **All HapMap3 populations** |     |
@@ -520,7 +520,7 @@ Population allele frequency choice (**see 4.4 below**).  Default is CEU.
  
 
 |     |           |     |                                                                                     |     |
-|--------|--------|--------|----------------------------------------|--------|
+|-----------|-----------|-----------|-------------------------------|-----------|
 |     | **Value** |     | **Population (description)**                                                        |     |
 |     |           |     |                                                                                     |     |
 |     | ASW       |     | African ancestry in Southwest USA                                                   |     |

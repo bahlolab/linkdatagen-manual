@@ -41,6 +41,7 @@ book:
       chapters:
       - further-comments.qmd
       - general-comments.qmd
+      - choosing-population.qmd
       - marker-frequency.qmd
       - test-datasets.qmd
 
@@ -62,7 +63,7 @@ format:
   docx:
     default
 
-editor: visual
+editor: source
 
 execute:
   freeze: auto

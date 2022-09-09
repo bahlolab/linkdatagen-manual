@@ -1,4 +1,4 @@
-# Download and annotations
+# Download and annotations {#sec-download}
 
 ::: callout-warning
 ## Work in progress
@@ -7,6 +7,9 @@ This manual is a work in progress. Until it is complete, please continue using L
 :::
 
 To download LINKDATAGEN, go to the latest release page <https://github.com/bahlolab/linkdatagen/releases/latest> and download the `linkdatagen_<version>.zip file`.
+
+It is assumed that [PERL](https://www.perl.org/) (5.8+) is installed. 
+This is usually the case with Linux and macOS. 
 
 ## Annotations
 

@@ -1,0 +1,3 @@
+# Choosing reference population {#sec-choosingPopulation}
+
+This chapter gives some recommendations on choosing the HapMap population.
