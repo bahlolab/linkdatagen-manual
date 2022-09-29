@@ -29,6 +29,8 @@ Options are grouped. At least one option is required in each group, and when a t
 
 ## Others
 
+TODO: add in -removeAIS
+
 ```{=html}
 <!---
 The -actg line was removed from the following table as it is not functioning. 
