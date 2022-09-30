@@ -8,28 +8,28 @@ This manual is a work in progress. Until it is complete, please continue using L
 
 ## Mandatory
 
-TODO: these would be better as lists than tables, and wouldn't cause issues in the PDF output.
+Options are grouped. At least one option is required in each group.
 
-Options are grouped. At least one option is required in each group, and when a tick appears in the Mixed column multiple options from that group may be specified.
+-   Annotation (choose exactly one)
+    -   `-annotFile <filename>`: File containing SNP annotation data.
+    -   `-chip {1, 2, 3, 4, 5, 6, 7, 8}`: Chip (or HapMap) number \[note: must also use `--annotDir`\]
 
--   Annotation
-    -   `-annotFile < filename >`: File containing SNP annotation data.
-    -   `-chip  {1, 2, 3, 4, 5, 6, 7, 8}`: Chip (or HapMap) number \[note: must also use `--annotDir`\]
+-   Call (choose exactly one)
+    -    `-callDir <path to directory>`: Directory containing genotype data file(s).
+    -    `-callFile <file path>`: File containing genotype data. 
 
-| `-callDir` \| Call \| ❌ \| \< path to directory \> \| Directory containing genotype data file(s). \|
-| `-callFile` \| Call \| ❌ \| \< filename \> \| File containing genotype data. \|
-| `-data` \| Data \| NA \| { a , i , m } \| Affymetrix or Illumina SNP chip, or MPS data. \|
-| `-pedfile` \| Pedfile \| NA \| \< filename \> \| File containing pedigree information (pedfile). \|
-| `-freq` \| Output \| ✅ \| NO VALUE \| Output allele \| Frequencies of founders. \|
-| `-prog` \| Output \| ✅ \| { all \| me \| al \| mo \| pl \| pr \| cp \| be \| fe \| re \| fp } \| Format to output data in. \|
-| `-popHetTest` \| Output \| ✅ \| { summary , verbose , perChr , perChrVerbose } \| Goodness-of-fit test of specified allele frequencies. \|
-| `-bestPopTest` \| Output \| ✅ \| NO VALUE \[note: mutually exclusive to the other 3 options\] \| Identifies best population using allele frequencies. \|
-| `-whichSamplesFile` \| WS \| ❌ \| \< filename \> \| File linking pedfile to genotype data file. \|
-| `-whichSamplesList` \| WS \| ❌ \| \< filename \> \| File linking pedfile to genotype data file(s). \|
+-   `-data { a , i , m }`: Affymetrix (a) or Illumina SNP chip (i), or MPS/VCF data (m).
+-   `-pedfile <filename>`: File containing pedigree information (pedfile).
+-   Output (choose at least one and may specify multiple)
+    - `-freq` Output allele frequencies of founders. 
+    - `-prog { all | me | al | mo | pl | pr | cp | be | fe | re | fp }`: Format to output data in.
+    - `-popHetTest { summary , verbose , perChr , perChrVerbose }`: Goodness-of-fit test of specified allele frequencies.
+    - `-bestPopTest`: Identifies best population using allele frequencies.
+-   Which Samples
+    - `-whichSamplesFile <file path>`: File linking pedfile to genotype data file.
+    - `-whichSamplesList <file path>`: File linking pedfile to genotype data file(s).
 
-## Others
-
-TODO: add in -removeAIS
+## Optional
 
 ```{=html}
 <!---
@@ -54,6 +54,7 @@ This is a reminder to put it back if it works in the future.
 | `-randomSNP`      | NO VALUE                                                             | Declare selection of a random SNP from each bin.    |
 | `-regions`        | { #,chr#,#:######-######,chr#:######-######}                         | Specify regions of genome to analyse.               |
 | `-regionsFile`    | \< filename \>                                                       | File containing regions of genome to analyse.       |
+| `-removeAIS`      | NO VALUE                                                             |    Remove SNP markers that are absent from any Illumina input file. (use with caution) |
 | `-removeWFHBS`    | { i , u }                                                            | Declare removal of SNPs with within-family HBS.     |
 | `-keepME`         | NO VALUE                                                             | Declare keeping of SNPs with Mendelian errors.      |
 | `-seed`           | { integer } \[ default = 12345 \]                                    | Seed to change "random" SNP selection.              |
