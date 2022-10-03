@@ -3,6 +3,7 @@ nocite: |
   @bahlo2009linkagemapping
   @smith2011reducing
 ---
+
 # Preface {.unnumbered}
 
 ::: callout-warning
@@ -12,8 +13,9 @@ This manual is a work in progress. Until it is complete, please continue using L
 :::
 
 ::: {.content-visible when-format="html"}
-::: callout-note 
-## This manual is also available as a PDF or Word document. 
+::: callout-note
+## This manual is also available as a PDF or Word document.
+
 [linkdatagen-manual.pdf](https://linkdatagen.netlify.app/linkdatagen-manual.pdf)
 
 [linkdatagen-manual.docx](https://linkdatagen.netlify.app/linkdatagen-manual.docx)
@@ -29,15 +31,13 @@ LINKDATAGEN selects markers for linkage and association analyses and performs nu
 -   MPS data: Hapmap2 (for CEU, CHB, JPT and YRI populations) and HapMap3
 -   PLINK data (TODO: should this be included here?)
 
-However, many other chips can be catered for (see -chip section). (TODO: insert cross-reference)
+However, many other chips can be catered for (see -chip option in @sec-linkdatagenpl).
 
-*(TODO: insert links to other software.)*
-LINKDATAGEN creates output files for the linkage mapping software: ALLEGRO, MERLIN, MORGAN and PLINK, as well as for BEAGLE, FESTIM, PREST, fastPHASE and RELATE. Many of these programs are available through the Rockefeller website (<http://linkage.rockefeller.edu/soft>).
+*(TODO: insert links to other software.)* LINKDATAGEN creates output files for the linkage mapping software: ALLEGRO, MERLIN, MORGAN and PLINK, as well as for BEAGLE, FESTIM, PREST, fastPHASE and RELATE. Many of these programs are available through the Rockefeller website (<http://linkage.rockefeller.edu/soft>).
 
 If you use LINKDATAGEN, please acknowledge by citing:
 
 > Bahlo M, Bromhead CJ. Generating linkage mapping files from Affymetrix SNP chip data. *Bioinformatics* 2009;25(15):1961-2.
-
 
 If you use the LINKDATAGEN -data m option along with vcf2linkdatagen.pl then please also cite:
 
