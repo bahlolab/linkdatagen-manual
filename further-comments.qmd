@@ -9,78 +9,58 @@ editor: visual
 This manual is a work in progress. Until it is complete, please continue using LINKDATAGEN from <https://bioinf.wehi.edu.au/software/linkdatagen/>.
 :::
 
-## X chromosome error
-
-detection     
+## X chromosome error detection
 
 The X chromosome data is now examined in detail to detect any sex swaps. Furthermore all X chromosome data is pooled by sex per individual and a quick test statistic calculated to test for the likelihood of wrong sex. The test statistic is a Z score derived from the normal approximation of the observed number of heterozygotes for a particular sample compared to the mean of the heterozygote counts of all samples of the same sex. All males with heterozygous calls will have these calls set to missing. The file chrX_SNPs.txt lists all SNPs on the X chromosome, based on the information in the annotation file.
 
- 
 
 ## Y chromosome check
 
-Y chromosome markers should have genotype calls for males and no calls for females.  Linkdatagen prints a list of proportions of Y chromosomes with called alleles for each genotyped individual.  This can be used to check that samples have not been swapped. Please note that Affymetrix SNP chips have either no or very few Y chromosome markers so this is only useful for -data m or -data i. The file chrY_SNPs.txt lists all SNPs on the Y chromosome, based on the information in the annotation file.
+Y chromosome markers should have genotype calls for males and no calls for females. Linkdatagen prints a list of proportions of Y chromosomes with called alleles for each genotyped individual. This can be used to check that samples have not been swapped. Please note that Affymetrix SNP chips have either no or very few Y chromosome markers so this is only useful for `-data m` or `-data i`. The file chrY_SNPs.txt lists all SNPs on the Y chromosome, based on the information in the annotation file.
 
- 
 
 ## Within/whole-family homozygosity-by-state ("uninformative") markers {#sec-wfhbsMarkers}
 
-Stipulation of this option (-removeWFHBS) means that within-family homozygosity-by-state markers, i.e. markers that have missing or identical homozygous genotypes across all samples within a family, are removed prior to marker selection.  Such markers are deemed "uninformative" for some analyses. To clarify, different families may be homozygous for different alleles for a marker to become uninformative.  When dealing with multiple families, two values are available; "u" (for union) and "i" (for intersection).  With value "u", a marker that is uninformative in ANY family is removed.  With value "i", a marker that is uninformative in ALL families is removed.  Value "u" is the default and will generally produce more informative markers across all families.  Value "i" may be useful in a number of settings, in particular when quality of genotypes is poor such that using value "u" would wipe out the majority of genotypes in all families.
+Stipulation of this option (`-removeWFHBS`) means that within-family homozygosity-by-state markers, i.e. markers that have missing or identical homozygous genotypes across all samples within a family, are removed prior to marker selection. 
+Such markers are deemed "uninformative" for some analyses. To clarify, different families may be homozygous for different alleles for a marker to become uninformative. When dealing with multiple families, two values are available; "u" (for union) and "i" (for intersection). With value "u", a marker that is uninformative in ANY family is removed. With value "i", a marker that is uninformative in ALL families is removed. Value "u" is the default and will generally produce more informative markers across all families. Value "i" may be useful in a number of settings, in particular when quality of genotypes is poor such that using value "u" would wipe out the majority of genotypes in all families.
 
- 
 
-Option -removeWFHBS is a dangerous but really useful option. At its worst it can introduce significant bias, in particular it can remove homozygosity by descent (HBD) signals in small pedigrees. However in small to moderate sized pedigrees with a reasonable number of founders, usage of this option leads to a more optimal choice of markers for linkage mapping. Linkage mapping, for example implemented in MERLIN, removes "uninformative" markers prior to linkage calculation, as these do not contribute to the LOD score. In small to moderate sized pedigrees markers with high heterozygosities may still be "uninformative" and thus not useful for mapping. Problems also arise in pedigrees where there is some mismatch between the given population allele frequencies and the real population allele frequencies, which are not known. Here ‑removeWFHBS also leads to a more suitable marker selection.
-
- 
+Option `-removeWFHBS` is a dangerous but really useful option. At its worst it can introduce significant bias, in particular it can remove homozygosity by descent (HBD) signals in small pedigrees. However in small to moderate sized pedigrees with a reasonable number of founders, usage of this option leads to a more optimal choice of markers for linkage mapping. Linkage mapping, for example implemented in MERLIN, removes "uninformative" markers prior to linkage calculation, as these do not contribute to the LOD score. In small to moderate sized pedigrees markers with high heterozygosities may still be "uninformative" and thus not useful for mapping. Problems also arise in pedigrees where there is some mismatch between the given population allele frequencies and the real population allele frequencies, which are not known. Here `‑removeWFHBS` also leads to a more suitable marker selection.
 
 *The default setting is NO removal of WFHBS markers.*
 
- 
+## Annotation files
 
-## Annotation
+Different population allele frequencies can be specified through the -pop option. *The default is the Caucasian (CEU) population frequency data.* Not all SNPs have frequency data available for all populations. HapMap Phase III populations are:
 
-files
 
-Different population allele frequencies can be specified through the -pop option. *The default is the Caucasian (CEU) population frequency data.* Not all SNPs have frequency data available for all populations.   HapMap Phase III populations are:
 
- 
+ASW : African ancestry in Southwest USA
 
-ASW :    African ancestry in Southwest USA
+CEU : Utah residents with Northern and Western European ancestry from the CEPH collection
 
-CEU :    Utah residents with Northern and Western European ancestry from the CEPH collection
+CHB : Han Chinese in Beijing, China
 
-CHB :    Han Chinese in Beijing, China
+CHD : Chinese in Metropolitan Denver, Colorado
 
-CHD :    Chinese in Metropolitan Denver, Colorado
+GIH : Gujarati Indians in Houston, Texas
 
-GIH  :    Gujarati Indians in Houston, Texas
+JPT : Japanese in Tokyo, Japan
 
-JPT   :    Japanese in Tokyo, Japan
+LWK : Luhya in Webuye, Kenya
 
-LWK :    Luhya in Webuye, Kenya
+MEX : Mexican ancestry in Los Angeles, California
 
-MEX :    Mexican ancestry in Los Angeles, California
+MKK : Maasai in Kinyawa, Kenya
 
-MKK :    Maasai in Kinyawa, Kenya
+TSI : Toscans in Italy
 
-TSI   :    Toscans in Italy
-
-YRI  :    Yoruba in Ibadan, Nigeria (West Africa)
-
- 
+YRI : Yoruba in Ibadan, Nigeria (West Africa)
 
 For HapMap3 there are \~1.5 million SNPs available, but some populations have substantially fewer SNPs.
 
- 
-
-When using the -data m option you may wish to use the HapMap Phase 2 frequency data. This only allows the choice of the initial four HapMap populations, but it gives a much larger choice of SNP markers (\~4 million SNPs to choose from).
-
- 
+When using the `-data m` option you may wish to use the HapMap Phase 2 frequency data. This only allows the choice of the initial four HapMap populations, but it gives a much larger choice of SNP markers (\~4 million SNPs to choose from).
 
 It is also possible to include your own set of SNP allele frequencies. This is useful for linkage mapping in boutique populations where the researcher has been able to generate their own control allele frequency data.
 
- 
-
 Note: we have generated all annotation files for Illumina, Affymetrix and MPS data ourselves, using Hapmap2 and Hapmap3 data since these data sets provide good control allele frequency data. The genetic map and physical map positions are hg19 based. The genetic map positions are derived by linear interpolation or directly from the genetic map generated by the Hapmap consortium (http://www.hapmap.org).
-
-\
