@@ -1,6 +1,6 @@
 ---
 title: "General comments"
-editor: visual
+editor: source
 ---
 
 ::: callout-warning
@@ -9,25 +9,24 @@ editor: visual
 This manual is a work in progress. Until it is complete, please continue using LINKDATAGEN from <https://bioinf.wehi.edu.au/software/linkdatagen/>.
 :::
 
-* Multiple pedigrees can be analysed together but require the use of `‑whichSamplesFile`
+-   Multiple pedigrees can be analysed together but require the use of `‑whichSamplesFile`
 
-* Check that all your newline characters are UNIX style, not MAC style. This can cause LINKDATAGEN to fail to read in the file properly and produce errors. On UNIX/MAC systems this can be fixed with the command:
+-   Check that all your newline characters are UNIX style, not MAC style. This can cause LINKDATAGEN to fail to read in the file properly and produce errors. On UNIX/MAC systems this can be fixed with the command:
 
     `cat filein | tr '\\r' '\\n' > fileout`
 
+-   Input files may be compressed with gzip (.gz) or bzip2 (.bz2) with the appropriate extensions (as in the brackets). This feature requires either the PerlIO::gzip or PerlIO::via::Bzip2 Perl libraries to be installed, available at http://www.cpan.org/.
 
-* Input files may be compressed with gzip (.gz) or bzip2 (.bz2) with the appropriate extensions (as in the brackets). This feature requires either the PerlIO::gzip or PerlIO::via::Bzip2 Perl libraries to be installed, available at http://www.cpan.org/.
+-   Checking your pedigree. LINKDATAGEN does not perform any checking of your pedigree. We suggest you use HaploPainter [@thiele2005haplopainter] to "draw" your pedigree and check it this way. Look out for large numbers of reported Mendelian errors in the LINKDATAGEN output. This may indicate the presence of a pedigree error.
 
-* Checking your pedigree. LINKDATAGEN does not perform any checking of your pedigree. We suggest you use HaploPainter (Thiele and Nürnberg 2004) to "draw" your pedigree and check it this way. Look out for large numbers of reported Mendelian errors in the LINKDATAGEN output. This may indicate the presence of a pedigree error.
+-   Marker choice by bin is simplistic and there are more sophisticated ways of choosing markers but they rely on HapMap linkage disequilibrium estimates and tagging markers. We would argue that our approach is more flexible when it comes to dealing with uninformative markers or markers with no information. In practice we have also had a lot of success in identifying linkage with this method so we don't think we lose much by not using a more sophisticated approach. However "holes" may appear in the linkage map. Consult the missingMarkers.txt file to check.
 
-* Marker choice by bin is simplistic and there are more sophisticated ways of choosing markers but they rely on HapMap linkage disequilibrium estimates and tagging markers. We would argue that our approach is more flexible when it comes to dealing with uninformative markers or markers with no information. In practice we have also had a lot of success in identifying linkage with this method so we don't think we lose much by not using a more sophisticated approach. However "holes" may appear in the linkage map. Consult the missingMarkers.txt file to check.
+-   Only SNPs with names beginning with "rs" are read in by the program, all other markers are mercilessly removed. No CNV probes will be included for example.
 
-* Only SNPs with names beginning with "rs" are read in by the program, all other markers are mercilessly removed. No CNV probes will be included for example.
+-   For Illumina data all A/T and C/G SNPs are currently missing from the annotation files due to confusion about strandedness. These amount to a small proportion (\<5%) of all SNPs on the chips.
 
-*   For Illumina data all A/T and C/G SNPs are currently missing from the annotation files due to confusion about strandedness. These amount to a small proportion (\<5%) of all SNPs on the chips.
+-   Only SNPs with A/T/C/G alleles are currently used. The Illumina 1M chip has SNPs with alleles I & D (insertion & deletion). These SNPs are currently ignored by LINKDATAGEN.
 
-*   Only SNPs with A/T/C/G alleles are currently used. The Illumina 1M chip has SNPs with alleles I & D (insertion & deletion). These SNPs are currently ignored by LINKDATAGEN.
+-   Currently discards SNPs with no frequency annotation in the chosen population. A better option in future would be to keep these SNPs when output options that do not require allele frequencies i.e. PLINK (`‑prog pl`), BEAGLE (`‑prog be`) or `‑prog cp` are used
 
-*   Currently discards SNPs with no frequency annotation in the chosen population. A better option in future would be to keep these SNPs when output options that do not require allele frequencies i.e. PLINK (`‑prog pl`), BEAGLE (`‑prog be`) or `‑prog cp` are used
-
-*   It is very useful to run parametric or non-parametric linkage analysis using one of ALLEGRO, MERLIN or MORGAN and then, once a peak has been identified, to eyeball the data further using the `-prog cp` option, in conjunction with `‑binsize 0.0` (to get all the markers) to further narrow the linkage peak.
+-   It is very useful to run parametric or non-parametric linkage analysis using one of ALLEGRO, MERLIN or MORGAN and then, once a peak has been identified, to eyeball the data further using the `-prog cp` option, in conjunction with `‑binsize 0.0` (to get all the markers) to further narrow the linkage peak.
