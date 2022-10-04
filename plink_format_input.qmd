@@ -1,2 +1,2 @@
-# PLINK format input
+# PLINK format input {#sec-plinkformat}
 
