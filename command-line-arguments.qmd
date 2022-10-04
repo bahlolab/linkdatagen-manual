@@ -179,15 +179,15 @@ The following section describes each of the options available when running LINKD
     
     TODO: put in these references
     
-    1.  ALLEGRO { al } (Gudbjartsson, et al., 2000; Gudbjartsson, et al., 2005)
-    2.  MERLIN { me } (Abecasis, et al., 2002; Abecasis and Wigginton, 2005)
-    3.  MORGAN { mo } (Thompson, 1995; Thompson, 2000)
-    4.  PREST { pr } (McPeek and Sun, 2000)
-    5.  PLINK { pl } (Purcell, et al., 2007)
-    6.  BEAGLE { be } (Browning 2006; Browning & Browning 2007)
-    7.  FESTIM { fe } (Leutenegger 2006)
-    8.  RELATE { re } (Albrechtsen et al. 2009, Albrechtsen et al. 2011)
-    9.  fastPHASE { fp } (Scheet and Stephens, 2006)
+    1.  ALLEGRO { al } [ @gudbjartsson2000allegro; @gudbjartsson2005allegro]
+    2.  MERLIN { me } [ @abecasis2002merlin; @abecasis2005handling]
+    3.  MORGAN { mo } [ @thompson1995monte; @thompson2000statistical ]
+    4.  PREST { pr } [ @mcpeek2000statistical ]
+    5.  PLINK { pl } [ @purcell2007plink ]
+    6.  BEAGLE { be } [ @browning2006multilocus; @browning2007efficient ]
+    7.  FESTIM { fe } [ @leutenegger2003estimation ] 
+    8.  RELATE { re } [ @albrechtsen2009relatedness ; @moltke2011method ]
+    9.  fastPHASE { fp } [ @scheet2006fast ]
     10. Our COMPLETE genotype format { cp }
     11. All of the above { all }
     
@@ -206,7 +206,7 @@ The following section describes each of the options available when running LINKD
     | AB                     | 2     |
     | BB                     | 3     |
     
-    Using `-prog cp` prints out individuals sorted by affection status with genotyping data displayed with SNPs in rows and individuals in columns. SNPs are ordered by genetic map distance. Three IBS sharing statistics modelled on the optimal S sharing statistics proposed by McPeek (McPeek, 1999) are implemented in the columns after the affecteds:
+    Using `-prog cp` prints out individuals sorted by affection status with genotyping data displayed with SNPs in rows and individuals in columns. SNPs are ordered by genetic map distance. Three IBS sharing statistics modelled on the optimal S sharing statistics proposed by @mcpeek1999optimal are implemented in the columns after the affecteds:
     
     1.  S_robdom --- suitable for dominant pedigree but robust to a range of disease allele frequencies and penetrances
     2.  S_HBS --- suitable for homozygosity mapping
@@ -216,7 +216,7 @@ The following section describes each of the options available when running LINKD
     
     The \*.cp files are best opened in EXCEL and annotated as desired by the researcher.
     
-    The `-popHetTest` performs a goodness-of-fit test comparing the **observed** genotype counts (AA, AB and BB) of SNPs from the genotyped sample(s) against the **expected** genotype counts given the selected population (e.g. CEU or JPT). This test is useful to establish whether or not the selected population allele frequencies are a good match for the genotyped sample(s). When using this option, it is **recommended** to select the most heterozygous SNPs from each bin (**do not use** -randomSNP) and not to filter out SNPs displaying homozygosity-by-state (**do not use** `‑removeWFHBS`).
+    The `-popHetTest` performs a goodness-of-fit test comparing the **observed** genotype counts (AA, AB and BB) of SNPs from the genotyped sample(s) against the **expected** genotype counts given the selected population (e.g. CEU or JPT). This test is useful to establish whether or not the selected population allele frequencies are a good match for the genotyped sample(s). When using this option, it is **recommended** to select the most heterozygous SNPs from each bin (**do not use** `-randomSNP`) and not to filter out SNPs displaying homozygosity-by-state (**do not use** `‑removeWFHBS`).
     
     One of four **mutually exclusive** values can be supplied when running `-popHetTest`:
     
