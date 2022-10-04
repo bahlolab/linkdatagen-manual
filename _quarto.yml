@@ -29,7 +29,7 @@ book:
 
     - part: linkdatagen.pl
       chapters:
-      - command-line-options.qmd
+      - command-line-arguments.qmd
       - cheat-sheet.qmd
 
     - part: VCF and PLINK files

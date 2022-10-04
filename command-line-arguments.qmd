@@ -1,4 +1,4 @@
-# Command line options {#sec-linkdatagenpl}
+# Command line arguments {#sec-linkdatagenpl}
 
 ::: callout-warning
 ## Work in progress
@@ -107,12 +107,12 @@ The following section describes each of the options available when running LINKD
     
     The coding of SNP alleles to these formats is derived by coding the A allele as the first alphabetical base, e.g. if a SNP is an A/T polymorphism AA becomes 11, TT 22 and AT 12. Using the HapMap annotation files we always refer to SNPs on the forward (+) strand. Allele frequencies always refer to the A (not B) allele and thus are a mix of major and minor allele frequencies. Hence, the BRLMM/CRLMM formats are shown in the table below.
     
-    |     | Genotype               |     | Birdseed/BRLMM |     | R/oligo/CRLMM |     |
-    |-----|------------------------|-----|----------------|-----|---------------|-----|
-    |     | No call / missing data |     | -1             |     | 0             |     |
-    |     | AA                     |     | 0              |     | 1             |     |
-    |     | AB                     |     | 1              |     | 2             |     |
-    |     | BB                     |     | 2              |     | 3             |     |
+    | Genotype               | Birdseed/BRLMM |     | R/oligo/CRLMM |     |
+    |------------------------|----------------|-----|---------------|-----|
+    | No call / missing data | -1             |     | 0             |     |
+    | AA                     | 0              |     | 1             |     |
+    | AB                     | 1              |     | 2             |     |
+    | BB                     | 2              |     | 3             |     |
     
     The genotype call file contains one column of SNP identifiers and one column of genotype calls for each individual, for example:
     
@@ -122,69 +122,58 @@ The following section describes each of the options available when running LINKD
     rs13579135 1 1 1
     ```
 
--annotfile \< filename \>\
+-   `-annotfile <filename>`
 
--chip { 1 , 2 , 3 , 4 , 5 , 6 , 7 }
+    `-chip { 1 , 2 , 3 , 4 , 5 , 6 , 7 }`
 
-LINKDATAGEN requires one, and **only one**, of these two options. They are **mutually exclusive**. Both options work similarly in that they identify the appropriate **annotation file**. The annotation files include data on allele frequencies, and genetic and physical map positions.
+    LINKDATAGEN requires one, and **only one**, of these two options. They are **mutually exclusive**. Both options work similarly in that they identify the appropriate **annotation file**. The annotation files include data on allele frequencies, and genetic and physical map positions.
+    
+    The -annotfile option explicitly specifies the filename of the annotation file required.
+    
+    The -chip option specifies the genotyping platform, relative to the data type, and hence selects the appropriate annotation file:
 
-The -annotfile option explicitly specifies the filename of the annotation file required.
-
-The -chip option specifies the genotyping platform, relative to the data type, and hence selects the appropriate annotation file:
-
--data a -chip { 1 , 2 , 3 , 4 , 5 , 6 , 7 }
-
--data i -chip { 1 , 2 , 3 , 4 , 5 , 6 }
-
--data m -chip { 1 , 2 }
-
-The choices above correspond to:
-
-|     |          |     |              |     |                       |     |         |     |
-|--------|--------|--------|--------|--------|--------|--------|--------|--------|
-|     | -chip \# |     | -data a      |     | -data i               |     | -data m |     |
-|     |          |     |              |     |                       |     |         |     |
-|     | 1        |     | 50k Xba      |     |                       |     | HapMap2 |     |
-|     |          |     |              |     |                       |     |         |     |
-|     | 2        |     | 50k Hind     |     | 610Quad               |     | HapMap3 |     |
-|     |          |     |              |     |                       |     |         |     |
-|     | 3        |     | 250k Sty     |     | [\[RT1\]](#_msocom_1) |     |         |     |
-|     |          |     |              |     |                       |     |         |     |
-|     | 4        |     | 250k Nsp     |     | Cyto12                |     |         |     |
-|     |          |     |              |     |                       |     |         |     |
-|     | 5        |     | 5.0          |     | Omni Express          |     |         |     |
-|     |          |     |              |     |                       |     |         |     |
-|     | 6        |     | 6.0          |     | 1M                    |     |         |     |
-|     |          |     |              |     |                       |     |         |     |
-|     | 7        |     | 500k Sty+Nsp |     | HapMap2               |     |         |     |
-|     |          |     |              |     |                       |     |         |     |
-|     | 8        |     |              |     | HapMap3               |     |         |     |
-|     |          |     |              |     |                       |     |         |     |
-
-Note: HapMap2 (only CEU, YRI, CHB, JPT, \~4 million SNPs)
-
-HapMap3 (all 11 HapMap populations, \~1.5 million SNPs)
-
-Illumina SNP chips have a lot of overlap. Hence, even if no annotation file currently exists, then one can use a related file and probably gain sufficient SNP coverage to allow at least linkage mapping. This includes the ability to specify the HapMap2 and HapMap3 annotation files with the -annotfile option that are universally compatible with MPS and Illumina SNP chip data, namely annotHapMap2U.txt and annotHapMap3U.txt. Overlaps of the various annotations (filtering sites without frequencies) and call files are given in the file on the LINKDATAGEN website linkdatagen_chip_overlaps.xlsx, in summary if you have one of the following Illumina chips then we suggest you perform your analysis with the corresponding annotation for your population:
-
-|     |                   |     |                                                            |     |                             |     |
-|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
-|     |                   |     | **Annotation with greatest number of overlapping markers** |     |                             |     |
-|     |                   |     |                                                            |     |                             |     |
-|     | **Illumina chip** |     | **CEU, YRI, CHB, JPT populations only**                    |     | **All HapMap3 populations** |     |
-|     |                   |     |                                                            |     |                             |     |
-|     | 660Quad           |     | HapMap2                                                    |     | 610Quad                     |     |
-|     |                   |     |                                                            |     |                             |     |
-|     | Omni1Quad         |     | HapMap2                                                    |     | Omni Express                |     |
-|     |                   |     |                                                            |     |                             |     |
-|     | Omni2.5           |     | Omni Express                                               |     | Omni Express                |     |
-|     |                   |     |                                                            |     |                             |     |
-|     | Omni5             |     | HapMap2                                                    |     | 1m                          |     |
-|     |                   |     |                                                            |     |                             |     |
-|     | HumanCoreExome    |     | Omni Express                                               |     | Omni Express                |     |
-|     |                   |     |                                                            |     |                             |     |
-
-If using the -chip option, then the -annotDir option is also required.
+    `-data a -chip { 1 , 2 , 3 , 4 , 5 , 6 , 7 }`
+    
+    `-data i -chip { 1 , 2 , 3 , 4 , 5 , 6 }`
+    
+    `-data m -chip { 1 , 2 }`
+    
+    The choices above correspond to:
+    
+    |     | -chip \# |     | -data a      |     | -data i               |     | -data m |     |
+    |--------|--------|--------|--------|--------|--------|--------|--------|--------|
+    |     | 1        |     | 50k Xba      |     |                       |     | HapMap2 |     |
+    |     | 2        |     | 50k Hind     |     | 610Quad               |     | HapMap3 |     |
+    |     | 3        |     | 250k Sty     |     | [\[RT1\]](#_msocom_1) |     |         |     |
+    |     | 4        |     | 250k Nsp     |     | Cyto12                |     |         |     |
+    |     | 5        |     | 5.0          |     | Omni Express          |     |         |     |
+    |     | 6        |     | 6.0          |     | 1M                    |     |         |     |
+    |     | 7        |     | 500k Sty+Nsp |     | HapMap2               |     |         |     |
+    |     | 8        |     |              |     | HapMap3               |     |         |     |
+    
+    Note: HapMap2 (only CEU, YRI, CHB, JPT, \~4 million SNPs)
+    
+    HapMap3 (all 11 HapMap populations, \~1.5 million SNPs)
+    
+    Illumina SNP chips have a lot of overlap. Hence, even if no annotation file currently exists, then one can use a related file and probably gain sufficient SNP coverage to allow at least linkage mapping. This includes the ability to specify the HapMap2 and HapMap3 annotation files with the `-annotfile` argument that are universally compatible with MPS and Illumina SNP chip data, namely annotHapMap2U.txt and annotHapMap3U.txt. Overlaps of the various annotations (filtering sites without frequencies) and call files are given in the file on the LINKDATAGEN website linkdatagen_chip_overlaps.xlsx, in summary if you have one of the following Illumina chips then we suggest you perform your analysis with the corresponding annotation for your population:
+    
+    |     |                   |     | **Annotation with greatest number of overlapping markers** |     |                             |     |
+    |-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+    |     |                   |     |                                                            |     |                             |     |
+    |     | **Illumina chip** |     | **CEU, YRI, CHB, JPT populations only**                    |     | **All HapMap3 populations** |     |
+    |     |                   |     |                                                            |     |                             |     |
+    |     | 660Quad           |     | HapMap2                                                    |     | 610Quad                     |     |
+    |     |                   |     |                                                            |     |                             |     |
+    |     | Omni1Quad         |     | HapMap2                                                    |     | Omni Express                |     |
+    |     |                   |     |                                                            |     |                             |     |
+    |     | Omni2.5           |     | Omni Express                                               |     | Omni Express                |     |
+    |     |                   |     |                                                            |     |                             |     |
+    |     | Omni5             |     | HapMap2                                                    |     | 1m                          |     |
+    |     |                   |     |                                                            |     |                             |     |
+    |     | HumanCoreExome    |     | Omni Express                                               |     | Omni Express                |     |
+    |     |                   |     |                                                            |     |                             |     |
+    
+    If using the -chip option, then the -annotDir option is also required.
 
 -annotDir \< path to directory \>
 
